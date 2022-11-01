@@ -9,13 +9,37 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Resource",
+"class": &"BuildingData",
+"language": &"GDScript",
+"path": "res://BuildingData.gd"
+}, {
+"base": "Resource",
+"class": &"CellData",
+"language": &"GDScript",
+"path": "res://CellData.gd"
+}, {
 "base": "Node2D",
 "class": &"Grid",
 "language": &"GDScript",
 "path": "res://Grid.gd"
+}, {
+"base": "Resource",
+"class": &"ItemData",
+"language": &"GDScript",
+"path": "res://ItemData.gd"
+}, {
+"base": "Resource",
+"class": &"RecipeData",
+"language": &"GDScript",
+"path": "res://RecipeData.gd"
 }]
 _global_script_class_icons={
-"Grid": ""
+"BuildingData": "",
+"CellData": "",
+"Grid": "",
+"ItemData": "",
+"RecipeData": ""
 }
 
 [application]
