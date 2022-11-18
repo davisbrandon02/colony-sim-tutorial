@@ -9,5 +9,5 @@ extends Resource
 @export var resourcesRequired: Dictionary
 @export var workRequired: int
 @export var isRestingSpot: bool
-@export var recipes: Array[Resource]
+@export var recipes: Array[RecipeData]
 
