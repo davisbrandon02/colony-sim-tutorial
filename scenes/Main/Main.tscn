@@ -1,19 +1,83 @@
-[gd_scene load_steps=6 format=3 uid="uid://witem5vdf1lp"]
+[gd_scene load_steps=19 format=3 uid="uid://witem5vdf1lp"]
 
 [ext_resource type="Script" path="res://scenes/Main/Main.gd" id="1_3jwfp"]
+[ext_resource type="Texture2D" uid="uid://dppie2snlcmwv" path="res://art/dirt.png" id="2_lfbqe"]
 [ext_resource type="Script" path="res://scripts/Grid.gd" id="2_vomqs"]
+[ext_resource type="Texture2D" uid="uid://bpfj3of8yajye" path="res://art/grass.png" id="3_1mvva"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="3_5t4qm"]
 [ext_resource type="PackedScene" uid="uid://chxdhnp2qv23c" path="res://scenes/Unit/Unit.tscn" id="3_m5q7t"]
 [ext_resource type="Script" path="res://scripts/Pathfinding.gd" id="4_6f040"]
+[ext_resource type="Texture2D" uid="uid://cmdmdx4xdh027" path="res://art/missing.png" id="4_jukli"]
+[ext_resource type="Texture2D" uid="uid://3qc1ett58prb" path="res://art/stonewall.png" id="5_4f4k8"]
+[ext_resource type="Texture2D" uid="uid://dmy3cggox0eco" path="res://art/tree.png" id="6_no7du"]
+[ext_resource type="Texture2D" uid="uid://eqihewo0urf" path="res://art/woodwall.png" id="7_jtbvf"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kq4dk"]
+resource_name = "missing"
+texture = ExtResource("4_jukli")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s1mk2"]
+resource_name = "grass"
+texture = ExtResource("3_1mvva")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jh1ec"]
+resource_name = "dirt"
+texture = ExtResource("2_lfbqe")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l70wr"]
+resource_name = "woodwall"
+texture = ExtResource("7_jtbvf")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n1sdd"]
+resource_name = "stonewall"
+texture = ExtResource("5_4f4k8")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs4mo"]
+resource_name = "tree"
+texture = ExtResource("6_no7du")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_p723a"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_kq4dk")
+sources/1 = SubResource("TileSetAtlasSource_s1mk2")
+sources/2 = SubResource("TileSetAtlasSource_jh1ec")
+sources/3 = SubResource("TileSetAtlasSource_l70wr")
+sources/4 = SubResource("TileSetAtlasSource_n1sdd")
+sources/5 = SubResource("TileSetAtlasSource_cs4mo")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_3jwfp")
 
-[node name="Grid" type="Node2D" parent="."]
+[node name="Grid" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_p723a")
+cell_quadrant_size = 128
+format = 2
+layer_0/name = "floor"
+layer_1/name = "occupant"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = true
+layer_1/y_sort_origin = 0
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array()
 script = ExtResource("2_vomqs")
 show_debug = true
 
 [node name="Debug" type="Node2D" parent="Grid"]
+visible = false
+top_level = true
 
 [node name="Units" type="Node2D" parent="Grid"]
 

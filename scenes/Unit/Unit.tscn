@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://chxdhnp2qv23c"]
 
 [ext_resource type="Script" path="res://scenes/Unit/Unit.gd" id="1_f4mw0"]
-[ext_resource type="Texture2D" uid="uid://bjdmqaviuccr1" path="res://art/icon.svg" id="1_f64kt"]
+[ext_resource type="Texture2D" uid="uid://dkwvujnpa1yf5" path="res://art/colonist.png" id="2_bur2d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tuecc"]
 size = Vector2(128, 128)
@@ -10,7 +10,9 @@ size = Vector2(128, 128)
 script = ExtResource("1_f4mw0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_f64kt")
+texture = ExtResource("2_bur2d")
+centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(64, 64)
 shape = SubResource("RectangleShape2D_tuecc")

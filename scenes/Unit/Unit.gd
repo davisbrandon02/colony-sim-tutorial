@@ -5,7 +5,7 @@ extends Area2D
 @onready var grid: Grid = main.get_node("Grid")
 @onready var pf: Pathfinder = grid.get_node("Pathfinding")
 
-var data: UnitData
+var data: UnitData = UnitData.new()
 var speed = 100
 
 var path: Array = []
@@ -14,6 +14,9 @@ var pos: Vector2:
 		return pos
 	set(value):
 		pos = value
+
+func _ready():
+	pos = grid.worldToGrid(position)
 
 func _process(delta):
 	move(delta)
@@ -26,7 +29,7 @@ func move(delta):
 			path.pop_front()
 		else:
 			pos = grid.worldToGrid(position)
-			position += (path[0] - position).normalized() * speed * delta
+			position += (path[0] - position).normalized() * data.speed * delta
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:

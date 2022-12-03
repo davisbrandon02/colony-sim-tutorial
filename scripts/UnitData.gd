@@ -1,5 +1,5 @@
 class_name UnitData
 extends Object
 
-var name: String
-var speed: float = 100.0
+var name: String = "None"
+var speed: float = 200.0

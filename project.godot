@@ -14,12 +14,17 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scripts/BuildingData.gd"
 }, {
-"base": "Resource",
+"base": "Object",
 "class": &"CellData",
 "language": &"GDScript",
 "path": "res://scripts/CellData.gd"
 }, {
-"base": "Node2D",
+"base": "Resource",
+"class": &"FloorData",
+"language": &"GDScript",
+"path": "res://scripts/FloorData.gd"
+}, {
+"base": "TileMap",
 "class": &"Grid",
 "language": &"GDScript",
 "path": "res://scripts/Grid.gd"
@@ -52,6 +57,7 @@ _global_script_classes=[{
 _global_script_class_icons={
 "BuildingData": "",
 "CellData": "",
+"FloorData": "",
 "Grid": "",
 "ItemData": "",
 "Pathfinder": "",
