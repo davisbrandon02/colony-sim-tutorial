@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://85p3l3dy3y5i"]
+[gd_resource type="Resource" load_steps=2 format=3]
 
 [ext_resource type="Script" path="res://scripts/FloorData.gd" id="1_0rwa4"]
 

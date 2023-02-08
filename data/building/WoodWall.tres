@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cck0e8wd8mhnx"]
+
+[ext_resource type="Script" path="res://scripts/BuildingData.gd" id="1_3ev36"]
+
+[resource]
+script = ExtResource("1_3ev36")
+name = null
+width = 1
+height = 1
+resourcesRequired = null
+workRequired = null
+isRestingSpot = null
+recipes = null

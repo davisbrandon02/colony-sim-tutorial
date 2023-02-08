@@ -8,64 +8,6 @@
 
 config_version=5
 
-_global_script_classes=[{
-"base": "Resource",
-"class": &"BuildingData",
-"language": &"GDScript",
-"path": "res://scripts/BuildingData.gd"
-}, {
-"base": "Object",
-"class": &"CellData",
-"language": &"GDScript",
-"path": "res://scripts/CellData.gd"
-}, {
-"base": "Resource",
-"class": &"FloorData",
-"language": &"GDScript",
-"path": "res://scripts/FloorData.gd"
-}, {
-"base": "TileMap",
-"class": &"Grid",
-"language": &"GDScript",
-"path": "res://scripts/Grid.gd"
-}, {
-"base": "Resource",
-"class": &"ItemData",
-"language": &"GDScript",
-"path": "res://scripts/ItemData.gd"
-}, {
-"base": "Node",
-"class": &"Pathfinder",
-"language": &"GDScript",
-"path": "res://scripts/Pathfinding.gd"
-}, {
-"base": "Resource",
-"class": &"RecipeData",
-"language": &"GDScript",
-"path": "res://scripts/RecipeData.gd"
-}, {
-"base": "Area2D",
-"class": &"Unit",
-"language": &"GDScript",
-"path": "res://scenes/Unit/Unit.gd"
-}, {
-"base": "Object",
-"class": &"UnitData",
-"language": &"GDScript",
-"path": "res://scripts/UnitData.gd"
-}]
-_global_script_class_icons={
-"BuildingData": "",
-"CellData": "",
-"FloorData": "",
-"Grid": "",
-"ItemData": "",
-"Pathfinder": "",
-"RecipeData": "",
-"Unit": "",
-"UnitData": ""
-}
-
 [application]
 
 config/name="Colony Sim Tutorial"

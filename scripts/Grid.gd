@@ -4,12 +4,11 @@ extends TileMap
 @export var width: int = 12
 @export var height: int = 12
 @export var cell_size: int = 128
-var halfCellSize = cell_size / 2
 
 var grid: Dictionary = {}
 
 @export var show_debug: bool = false
-func generateGrid():
+func generateGrid() -> void:
 	for x in width:
 		for y in height:
 			grid[Vector2(x,y)] = CellData.new(Vector2(x,y))
