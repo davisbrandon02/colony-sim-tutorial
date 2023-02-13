@@ -5,3 +5,5 @@ extends Resource
 @export var id: int = 0
 @export var coords: Vector2 = Vector2(0, 0)
 
+func get_class():
+	return 'FloorData'

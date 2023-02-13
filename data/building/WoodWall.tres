@@ -1,13 +1,13 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cck0e8wd8mhnx"]
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3 uid="uid://ouagg26odlrm"]
 
 [ext_resource type="Script" path="res://scripts/BuildingData.gd" id="1_3ev36"]
 
 [resource]
 script = ExtResource("1_3ev36")
-name = null
-width = 1
-height = 1
-resourcesRequired = null
-workRequired = null
-isRestingSpot = null
-recipes = null
+name = "Wood Wall"
+id = 5
+coords = Vector2(0, 0)
+resourcesRequired = {}
+workRequired = 0
+isRestingSpot = false
+recipes = Array[Resource("res://scripts/RecipeData.gd")]([])

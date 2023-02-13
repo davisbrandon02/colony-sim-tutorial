@@ -221,3 +221,6 @@ text = "#name
 [connection signal="pressed" from="CanvasLayer/GUI/BaseButtons/HBoxContainer/Construct" to="CanvasLayer/GUI" method="_on_construct_pressed"]
 [connection signal="pressed" from="CanvasLayer/GUI/ConstructButtons/HBoxContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/GUI/ConstructButtons/HBoxContainer/Back" to="CanvasLayer/GUI" method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/GUI/ConstructButtons/HBoxContainer/WoodWall" to="CanvasLayer/GUI" method="_on_wood_wall_pressed"]
+[connection signal="pressed" from="CanvasLayer/GUI/ConstructButtons/HBoxContainer/StoneWall" to="CanvasLayer/GUI" method="_on_stone_wall_pressed"]
+[connection signal="pressed" from="CanvasLayer/GUI/ConstructButtons/HBoxContainer/DirtFloor" to="CanvasLayer/GUI" method="_on_dirt_floor_pressed"]

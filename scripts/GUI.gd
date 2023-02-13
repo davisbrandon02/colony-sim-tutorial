@@ -15,8 +15,7 @@ var selectedObject = null :
 			$InfoPanel.visible = false
 			$BaseButtons/HBoxContainer/Bio.visible = false
 
-func _ready():
-	pass
+signal setPlacingObject(_data)
 
 func setSelectedObject(obj):
 	selectedObject = obj
@@ -32,3 +31,14 @@ func _on_back_pressed():
 func _on_gui_input(event):
 	if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		selectedObject = null
+
+# --- Construct --- #
+
+func _on_wood_wall_pressed():
+	emit_signal("setPlacingObject", load("res://data/building/WoodWall.tres"))
+
+func _on_stone_wall_pressed():
+	emit_signal("setPlacingObject", load("res://data/building/StoneWall.tres"))
+
+func _on_dirt_floor_pressed():
+	emit_signal("setPlacingObject", load("res://data/floor/dirt.tres"))

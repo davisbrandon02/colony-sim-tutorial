@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3 uid="uid://bibk568gdbymj"]
+
+[ext_resource type="Script" path="res://scripts/BuildingData.gd" id="1_vcqop"]
+
+[resource]
+script = ExtResource("1_vcqop")
+name = "Stone Wall"
+id = 3
+coords = Vector2(0, 0)
+resourcesRequired = {}
+workRequired = 0
+isRestingSpot = false
+recipes = Array[Resource("res://scripts/RecipeData.gd")]([])
