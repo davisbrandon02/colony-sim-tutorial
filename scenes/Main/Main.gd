@@ -7,4 +7,3 @@ extends Node2D
 func _ready():
 	grid.generateGrid()
 	pf.initialize()
-	

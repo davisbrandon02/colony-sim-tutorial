@@ -5,17 +5,21 @@ extends Node
 # Texture
 # Source Id
 # Atlas coordinates
+# Navigable
 
-var grass = FloorType.new(
-	"Grass",
-	preload("res://asset/grass.png"),
-	1,
-	Vector2.ZERO
-)
-
-var dirt = FloorType.new(
-	"Dirt",
-	preload("res://asset/dirt.png"),
-	2,
-	Vector2.ZERO
-)
+static var list = [
+	FloorType.new(
+		"Grass",
+		preload("res://asset/grass.png"),
+		0,
+		Vector2.ZERO,
+		true,
+	),
+	FloorType.new(
+		"Dirt",
+		preload("res://asset/dirt.png"),
+		1,
+		Vector2.ZERO,
+		true,
+	)
+]
