@@ -12,8 +12,8 @@ config_version=5
 
 config/name="Colony Sim Tutorial"
 run/main_scene="res://scenes/Main/Main.tscn"
-config/features=PackedStringArray("4.0", "Mobile")
-config/icon="res://art/icon.svg"
+config/features=PackedStringArray("4.2", "Mobile")
+config/icon="res://asset/icon.svg"
 
 [input]
 

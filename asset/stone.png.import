@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkwvujnpa1yf5"
-path="res://.godot/imported/colonist.png-db7c87bf518d783e737fafc66cba50ad.ctex"
+uid="uid://3qc1ett58prb"
+path="res://.godot/imported/stone.png-509f7b85d087fb4d2c589416728bcaed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/colonist.png"
-dest_files=["res://.godot/imported/colonist.png-db7c87bf518d783e737fafc66cba50ad.ctex"]
+source_file="res://asset/stone.png"
+dest_files=["res://.godot/imported/stone.png-509f7b85d087fb4d2c589416728bcaed.ctex"]
 
 [params]
 

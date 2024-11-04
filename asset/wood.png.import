@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clmqx1jql3sgk"
-path="res://.godot/imported/woodwall_bp.png-8308790312906d90f00513c7a2f1494b.ctex"
+uid="uid://dg4ugjolr41io"
+path="res://.godot/imported/wood.png-f8204e5f0e7b8cb1a6f4e55110cc83f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/woodwall_bp.png"
-dest_files=["res://.godot/imported/woodwall_bp.png-8308790312906d90f00513c7a2f1494b.ctex"]
+source_file="res://asset/wood.png"
+dest_files=["res://.godot/imported/wood.png-f8204e5f0e7b8cb1a6f4e55110cc83f6.ctex"]
 
 [params]
 

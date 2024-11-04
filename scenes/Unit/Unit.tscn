@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://chxdhnp2qv23c"]
 
 [ext_resource type="Script" path="res://scenes/Unit/Unit.gd" id="1_f4mw0"]
-[ext_resource type="Texture2D" uid="uid://dkwvujnpa1yf5" path="res://art/colonist.png" id="2_bur2d"]
+[ext_resource type="Texture2D" uid="uid://dkwvujnpa1yf5" path="res://asset/colonist.png" id="2_bur2d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tuecc"]
 size = Vector2(128, 128)

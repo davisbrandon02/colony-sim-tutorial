@@ -8,36 +8,25 @@ extends Area2D
 
 signal unitSelected(obj)
 
-var data: UnitData = UnitData.new()
 var speed = 100
 
 var path: Array = []
-var pos: Vector2:
-	get:
-		return pos
-	set(value):
-		pos = value
+var pos: Vector2
 
 func _ready():
 	pos = grid.worldToGrid(position)
+	pos = TileMap.
 	unitSelected.connect(gui.setSelectedObject)
 
 func _process(delta):
 	move(delta)
 
+func setPos(_pos: Vector2):
+	pos = _pos
+
 func move(delta):
-	if path.size() > 0:
-		if position.distance_to(path[0]) < 5:
-			pos = grid.worldToGrid(path[0])
-			position = path[0]
-			path.pop_front()
-		else:
-			pos = grid.worldToGrid(position)
-			position += (path[0] - position).normalized() * data.speed * delta
+	pass
 
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 		emit_signal("unitSelected", self)
-
-func get_class():
-	return "Unit"

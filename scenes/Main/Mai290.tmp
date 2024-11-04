@@ -77,6 +77,10 @@ layer_1/name = "building"
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(917520, 4, 0, 393226, 4, 0, 196625, 4, 0, 983062, 4, 0, 655381, 4, 0, 720914, 4, 0, 851987, 4, 0, 786453, 4, 0)
 script = ExtResource("2_vomqs")
+width = null
+height = null
+cell_size = null
+show_debug = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 

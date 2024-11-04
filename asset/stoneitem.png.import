@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmdmdx4xdh027"
-path="res://.godot/imported/missing.png-74d0d3f7d0a44138b1b515ea8a12c83c.ctex"
+uid="uid://dlfjky3nwxy2o"
+path="res://.godot/imported/stoneitem.png-c4e8c442e134fa2fa614cfe9c2033811.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/missing.png"
-dest_files=["res://.godot/imported/missing.png-74d0d3f7d0a44138b1b515ea8a12c83c.ctex"]
+source_file="res://asset/stoneitem.png"
+dest_files=["res://.godot/imported/stoneitem.png-c4e8c442e134fa2fa614cfe9c2033811.ctex"]
 
 [params]
 

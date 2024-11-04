@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3qc1ett58prb"
-path="res://.godot/imported/stonewall.png-4a64fb88b3cbcf80bd9033f44005a768.ctex"
+uid="uid://bpfj3of8yajye"
+path="res://.godot/imported/grass.png-18e556975ddc5bf33cbafd3ddc7112f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/stonewall.png"
-dest_files=["res://.godot/imported/stonewall.png-4a64fb88b3cbcf80bd9033f44005a768.ctex"]
+source_file="res://asset/grass.png"
+dest_files=["res://.godot/imported/grass.png-18e556975ddc5bf33cbafd3ddc7112f7.ctex"]
 
 [params]
 

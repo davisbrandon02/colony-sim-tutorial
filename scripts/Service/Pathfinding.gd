@@ -1,5 +1,5 @@
-class_name Pathfinder
-extends Node
+class_name Pathfinding
+extends Node2D
 
 var aStar = AStar2D.new()
 @onready var main = get_tree().root.get_node("Main")
@@ -13,7 +13,10 @@ func getPath(_pointA: Vector2, _pointB: Vector2):
 	return aStar.get_point_path(aID, bID)
 
 func initialize():
+	# Add all points to the pathfinding system
 	addPoints()
+	
+	# Connect points with neighbors
 	connectAllPoints()
 
 func addPoints():
