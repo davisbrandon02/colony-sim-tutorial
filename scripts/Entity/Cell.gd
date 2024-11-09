@@ -1,6 +1,8 @@
 class_name Cell
 extends Node
 
+var grid: Grid
+
 var pos: Vector2
 
 var floor: Floor

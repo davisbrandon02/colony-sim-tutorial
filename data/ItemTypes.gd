@@ -7,9 +7,19 @@ extends Node
 # Atlas coordinates
 # Max stack size
 
-var stone = ItemType.new(
-	"Stone",
-	preload("res://asset/stoneitem.png"),
-	3,
-	Vector2.ZERO,
-)
+static var list = {
+	"stone": ItemType.new(
+		"Stone",
+		preload("res://asset/stoneitem.png"),
+		0,
+		Vector2.ZERO,
+		99,
+	),
+	"wood": ItemType.new(
+		"Wood",
+		preload("res://asset/wood.png"),
+		1,
+		Vector2.ZERO,
+		99,
+	),
+}

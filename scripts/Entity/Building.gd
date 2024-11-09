@@ -3,6 +3,9 @@ extends Object
 
 var buildingType: BuildingType
 var pos: Vector2
+var built: bool
 
-func _init(_buildingType: BuildingType, pos: Vector2) -> void:
+func _init(_buildingType: BuildingType, _pos: Vector2, _built: bool) -> void:
 	buildingType = _buildingType
+	pos = _pos
+	built = _built

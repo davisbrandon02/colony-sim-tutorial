@@ -7,19 +7,19 @@ extends Node
 # Atlas coordinates
 # Navigable
 
-static var list = [
-	FloorType.new(
+static var list = {
+	'grass': FloorType.new(
 		"Grass",
 		preload("res://asset/grass.png"),
 		0,
 		Vector2.ZERO,
 		true,
-	),
-	FloorType.new(
+		),
+	'dirt': FloorType.new(
 		"Dirt",
 		preload("res://asset/dirt.png"),
 		1,
 		Vector2.ZERO,
 		true,
-	)
-]
+		),
+	}

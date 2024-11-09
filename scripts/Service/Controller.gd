@@ -3,36 +3,41 @@ extends Node2D
 
 @export var grid: Grid
 
-func _ready():
-	# Connect child signals
-	grid.tileSelected.connect(tileSelected)
+signal set_tile(pos, object)
+signal object_selected(object: Object)
 
 # Input - tile selected
-func tileSelected(_pos):
+func tileSelected(_pos: Vector2):
 	if state == STATE.placing:
 		if grid.grid.has(_pos) and placing != null:
-			grid.setTile(_pos, placing)
+			if placing.type is BuildingType:
+				pass
+	elif state == STATE.select:
+		if grid.grid.has(_pos):
+			var cell: Cell = grid.grid[_pos]
+			if cell.item:
+				emit_signal("object_selected", cell.item)
+			elif cell.building:
+				emit_signal("object_selected", cell.building)
+			elif cell.plant:
+				emit_signal("object_selected", cell.plant)
 
 # Input - key press
 func _input(event):
 	if event.is_action("escape") and state != STATE.select:
 		state = STATE.select
-		print(state)
 
 enum STATE {
 	select,
 	placing
 }
-
 var state = STATE.select
-
 func setState(_state: STATE):
 	state = _state
-#endregion
 
 # Placing
-var placing = null
-
+var placing: Object = null
 func setPlacing(_data):
-	state = STATE.placing
-	placing = _data
+	if _data.type in [FloorType, BuildingType, PlantType]:
+		state = STATE.placing
+		placing = _data

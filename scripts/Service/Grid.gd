@@ -8,44 +8,66 @@ var grid: Dictionary = {}
 @export var objectLayer: TileMapLayer
 @export var itemLayer: TileMapLayer
 
-signal tileSelected(pos)
+signal tile_selected(pos: Vector2)
 
 func initializeGrid() -> void:
 	# Get all used tiles
 	var usedCells = floorLayer.get_used_cells() + objectLayer.get_used_cells() + itemLayer.get_used_cells()
 	for tile in usedCells:
 		var cell = Cell.new()
+		grid[tile] = cell
+		cell.grid = self
 		
 		# Match the floor data
 		var floorId = floorLayer.get_cell_source_id(tile)
-		for floorType in FloorTypes.list:
-			
+		for floorType:FloorType in FloorTypes.list.values():
+			if floorType.sourceId == floorId:
+				setCellFloor(tile, floorType)
+		
+		# Match the object data
+		var objectId = objectLayer.get_cell_source_id(tile)
+		var allObjectTypes = BuildingTypes.list.values() + PlantTypes.list.values()
+		for object in allObjectTypes:
+			if object.sourceId == objectId:
+				if object.getType() is BuildingType:
+					setCellBuilding(tile, object, true)
+				elif object.getType() is PlantType:
+					cell.plant = Plant.new(object, tile, true)
+		
+		# Match the item data (if any)
+		var itemId = itemLayer.get_cell_source_id(tile)
+		for itemType:ItemType in ItemTypes.list.values():
+			if itemType.sourceId == itemId:
+				cell.item = Item.new(itemType, tile)
 
-func setCellFloor(_pos: Vector2, _floorType: FloorType):
+func setCellFloor(_pos: Vector2, _floorType: FloorType = null):
 	if grid.has(_pos):
 		var cell: Cell = grid[_pos]
-		floorLayer.set_cell(_pos, _floorType.sourceId, _floorType.atlasCoords)
-		cell.floor = Floor.new(_floorType, _pos)
+		if _floorType:
+			floorLayer.set_cell(_pos, _floorType.sourceId, _floorType.atlasCoords)
+			cell.floor = Floor.new(_floorType, _pos)
+		else:
+			floorLayer.set_cell(_pos, FloorTypes.list.grass)
 
-func setCellBuilding(_pos: Vector2, _buildingType: BuildingType = null):
+func setCellBuilding(_pos: Vector2, _buildingType: BuildingType = null, _built: bool = false):
 	if grid.has(_pos):
 		var cell: Cell = grid[_pos]
 		if _buildingType:
 			objectLayer.set_cell(_pos, _buildingType.sourceId, _buildingType.atlasCoords)
-			cell.building = Building.new(_buildingType, _pos)
-			cell.occupied = true
+			cell.building = Building.new(_buildingType, _pos, _built)
 		else:
 			objectLayer.set_cell(_pos)
-			if !cell.plant and !cell.item:
-				cell.occupied = false
 
-func setCellPlant(_pos: Vector2, _plantType: PlantType):
+func setCellPlant(_pos: Vector2, _plantType: PlantType = null, _mature: bool = false):
 	if grid.has(_pos):
 		var cell: Cell = grid[_pos]
-		objectLayer.set_cell(_pos, _plantType.sourceId, _plantType.atlasCoords)
-		cell.plant = Plant.new(_plantType, _pos)
+		if _plantType:
+			objectLayer.set_cell(_pos, _plantType.sourceId, _plantType.atlasCoords)
+			cell.plant = Plant.new(_plantType, _pos, _mature)
+		else:
+			objectLayer.set_cell(_pos)
 
 # Input - get clicked tile
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-		emit_signal("tileSelected", local_to_map(get_global_mouse_position()))
+		emit_signal("tile_selected", local_to_map(get_global_mouse_position()))

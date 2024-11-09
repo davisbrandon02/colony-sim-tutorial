@@ -10,12 +10,16 @@ extends Node
 # Growth per day
 # Drops[]
 
-var tree = PlantType.new(
-	"Tree",
-	preload("res://asset/tree.png"),
-	2,
-	Vector2.ZERO,
-	5,
-	1,
-	[ Item.new() ]
-)
+static var list = {
+	"tree": PlantType.new(
+		"Tree",
+		preload("res://asset/tree.png"),
+		2,
+		Vector2.ZERO,
+		5,
+		1,
+		[
+			Item.new(ItemTypes.list["wood"], 8),
+			]
+	),
+}

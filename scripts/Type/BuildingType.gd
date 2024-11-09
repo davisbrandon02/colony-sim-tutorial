@@ -13,3 +13,6 @@ func _init(_name, _texture, _sourceId, _atlasCoords, _navigable):
 	sourceId = _sourceId
 	atlasCoords = _atlasCoords
 	navigable = _navigable
+
+func getType():
+	return BuildingType

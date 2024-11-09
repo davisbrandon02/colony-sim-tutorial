@@ -7,7 +7,7 @@ var sourceId: int
 var atlasCoords: Vector2
 var maxGrowth: float
 var growthPerDay: float
-var drops: Array[Item]
+var drops: Array
 
 func _init(_name, _texture, _sourceId, _atlasCoords, _maxGrowth, _growthPerDay, _drops):
 	name = _name
@@ -17,3 +17,6 @@ func _init(_name, _texture, _sourceId, _atlasCoords, _maxGrowth, _growthPerDay, 
 	maxGrowth = _maxGrowth
 	growthPerDay = _growthPerDay
 	drops = _drops
+
+func getType():
+	return PlantType
