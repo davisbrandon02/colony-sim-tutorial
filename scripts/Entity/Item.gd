@@ -8,3 +8,6 @@ var pos: Vector2
 func _init(_itemType: ItemType, _count: int) -> void:
 	itemType = _itemType
 	count = _count
+
+func getType():
+	return Item

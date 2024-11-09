@@ -8,7 +8,7 @@ var grid: Dictionary = {}
 @export var objectLayer: TileMapLayer
 @export var itemLayer: TileMapLayer
 
-signal tile_selected(pos: Vector2)
+signal tile_selected(pos: Vector2i)
 
 func initializeGrid() -> void:
 	# Get all used tiles
@@ -29,9 +29,9 @@ func initializeGrid() -> void:
 		var allObjectTypes = BuildingTypes.list.values() + PlantTypes.list.values()
 		for object in allObjectTypes:
 			if object.sourceId == objectId:
-				if object.getType() is BuildingType:
+				if object.getType() == BuildingType:
 					setCellBuilding(tile, object, true)
-				elif object.getType() is PlantType:
+				elif object.getType() == PlantType:
 					cell.plant = Plant.new(object, tile, true)
 		
 		# Match the item data (if any)
@@ -40,7 +40,7 @@ func initializeGrid() -> void:
 			if itemType.sourceId == itemId:
 				cell.item = Item.new(itemType, tile)
 
-func setCellFloor(_pos: Vector2, _floorType: FloorType = null):
+func setCellFloor(_pos: Vector2i, _floorType: FloorType = null):
 	if grid.has(_pos):
 		var cell: Cell = grid[_pos]
 		if _floorType:
@@ -49,7 +49,7 @@ func setCellFloor(_pos: Vector2, _floorType: FloorType = null):
 		else:
 			floorLayer.set_cell(_pos, FloorTypes.list.grass)
 
-func setCellBuilding(_pos: Vector2, _buildingType: BuildingType = null, _built: bool = false):
+func setCellBuilding(_pos: Vector2i, _buildingType: BuildingType = null, _built: bool = false):
 	if grid.has(_pos):
 		var cell: Cell = grid[_pos]
 		if _buildingType:
@@ -58,7 +58,7 @@ func setCellBuilding(_pos: Vector2, _buildingType: BuildingType = null, _built: 
 		else:
 			objectLayer.set_cell(_pos)
 
-func setCellPlant(_pos: Vector2, _plantType: PlantType = null, _mature: bool = false):
+func setCellPlant(_pos: Vector2i, _plantType: PlantType = null, _mature: bool = false):
 	if grid.has(_pos):
 		var cell: Cell = grid[_pos]
 		if _plantType:

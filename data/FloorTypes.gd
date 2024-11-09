@@ -11,14 +11,14 @@ static var list = {
 	'grass': FloorType.new(
 		"Grass",
 		preload("res://asset/grass.png"),
-		0,
+		3,
 		Vector2.ZERO,
 		true,
 		),
 	'dirt': FloorType.new(
 		"Dirt",
 		preload("res://asset/dirt.png"),
-		1,
+		2,
 		Vector2.ZERO,
 		true,
 		),

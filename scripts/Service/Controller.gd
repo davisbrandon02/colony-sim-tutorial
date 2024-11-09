@@ -2,15 +2,16 @@ class_name Controller
 extends Node2D
 
 @export var grid: Grid
+@export var pathfinding: Pathfinding
 
 signal set_tile(pos, object)
 signal object_selected(object: Object)
 
 # Input - tile selected
-func tileSelected(_pos: Vector2):
+func tileSelected(_pos: Vector2i):
 	if state == STATE.placing:
 		if grid.grid.has(_pos) and placing != null:
-			if placing.type is BuildingType:
+			if placing.getType() == BuildingType:
 				pass
 	elif state == STATE.select:
 		if grid.grid.has(_pos):
@@ -21,6 +22,7 @@ func tileSelected(_pos: Vector2):
 				emit_signal("object_selected", cell.building)
 			elif cell.plant:
 				emit_signal("object_selected", cell.plant)
+		pathfinding.disconnectPoint(_pos)
 
 # Input - key press
 func _input(event):

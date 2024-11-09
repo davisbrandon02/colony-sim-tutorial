@@ -1,58 +1,80 @@
 class_name Pathfinding
 extends Node2D
 
+@export var show_debug: bool
+
+@export var main: Main
+@export var grid: Grid
+
 var aStar = AStar2D.new()
-@onready var main = get_tree().root.get_node("Main")
-@onready var grid: Grid = main.get_node("Grid")
 
-const DIRECTIONS = [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]
-
-func getPath(_pointA: Vector2, _pointB: Vector2):
-	var aID = getPointID(_pointA)
-	var bID = getPointID(_pointB)
-	return aStar.get_point_path(aID, bID)
+var idMap: Dictionary = {}
+const NEIGHBOR_DIRECTIONS = [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT]
 
 func initialize():
-	# Add all points to the pathfinding system
-	addPoints()
+	# Add all points
+	var idCount: int = 0
+	for tile in grid.grid:
+		var cell: Cell = grid.grid[tile]
+		aStar.add_point(idCount, tile)
+		idMap[tile] = idCount
+		idCount += 1
 	
-	# Connect points with neighbors
-	connectAllPoints()
+	# Connect all points with neighbors IF they are navigable
+	for tile in grid.grid:
+		var cell: Cell = grid.grid[tile]
+		if cell.isNavigable():
+			connectPoint(tile)
 
-func addPoints():
-	var curID = 0
-	for point in grid.grid:
-		aStar.add_point(curID, grid.gridToWorld(point))
-		curID += 1
+func addPoint(pos: Vector2i, addAndConnect: bool = false):
+	var id
+	if pos in idMap.keys():
+		id = idMap[pos]
+	else:
+		id = idMap.values()[-1]
+	var newId = id + 1
+	aStar.add_point(newId, pos)
+	if addAndConnect:
+		connectPoint(pos)
+	queue_redraw()
 
-func connectAllPoints():
-	for point in grid.grid:
-		connectPoint(point)
+func connectPoint(pos: Vector2i):
+	var cell: Cell = grid.grid[Vector2i(pos.x, pos.y)]
+	var pointId = idMap[pos]
+	for direction in NEIGHBOR_DIRECTIONS:
+		var neighborPos: Vector2i = pos + direction
+		if grid.grid.has(neighborPos):
+			var neighborCell: Cell = grid.grid[neighborPos]
+			var neighborID = idMap[neighborPos]
+			if neighborCell.isNavigable():
+				aStar.connect_points(pointId, neighborID)
+	queue_redraw()
 
-func connectPoint(_point: Vector2):
-	var _pointID = getPointID(_point)
-	for direction in DIRECTIONS:
-		var neighbor = _point + direction
-		var neighborID = getPointID(neighbor)
-		if grid.grid.has(neighbor) and grid.grid[neighbor].navigable: #change later to see if navigable
-			aStar.connect_points(_pointID, neighborID)
+func disconnectPoint(pos: Vector2i):
+	var pointId = idMap[pos]
+	for direction in NEIGHBOR_DIRECTIONS:
+		var neighborPos: Vector2i = pos + direction
+		if grid.grid.has(neighborPos):
+			var neighborID = idMap[neighborPos]
+			aStar.disconnect_points(pointId, neighborID)
+	queue_redraw()
 
-func disconnectPoint(_point: Vector2):
-	var _pointID = getPointID(_point)
-	for direction in DIRECTIONS:
-		var neighbor = _point + direction
-		var neighborID = getPointID(neighbor)
-		aStar.disconnect_points(_pointID, neighborID)
-
-func getPointID(gridPoint: Vector2) -> int:
-	return aStar.get_closest_point(grid.gridToWorld(gridPoint))
-
-func getWorldID(worldPoint: Vector2)  -> int:
-	return aStar.get_closest_point(worldPoint)
-
-func getIDWorldPos(_id: int) -> Vector2:
-	return aStar.get_point_position(_id)
-
-func getIDGridPos(_id: int) -> Vector2:
-	var worldPos = getIDWorldPos(_id)
-	return grid.worldToGrid(worldPos)
+func _draw():
+	if show_debug:
+		for tile in idMap:
+			var tileId = idMap[tile]
+			var cell: Cell = grid.grid[tile]
+			if cell.isNavigable():
+				draw_circle(grid.map_to_local(tile), 5, Color.DARK_GREEN)
+			else:
+				draw_circle(grid.map_to_local(tile), 5, Color.RED)
+			for dir in NEIGHBOR_DIRECTIONS:
+				var neighborPos: Vector2i = tile + dir
+				if grid.grid.has(neighborPos):
+					var neighborCell: Cell = grid.grid[neighborPos]
+					var neighborID = idMap[neighborPos]
+					if neighborCell.isNavigable():
+						if aStar.are_points_connected(tileId, neighborID):
+							draw_line(grid.map_to_local(tile), grid.map_to_local(neighborPos), Color.GREEN)
+						else:
+							draw_line(grid.map_to_local(tile), grid.map_to_local(neighborPos), Color.RED)

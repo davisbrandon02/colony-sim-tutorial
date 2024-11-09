@@ -5,9 +5,9 @@ var selectedObject: Object
 @export var nameLabel: Label
 
 func setSelectedObject(object: Object):
-	if object.type in [Plant, Item, Building]:
+	if object.getType() in [Plant, Item, Building]:
 		visible = true
-		match object.type:
+		match object.getType():
 			Plant:
 				nameLabel.text = object.plantType.name
 			Item:

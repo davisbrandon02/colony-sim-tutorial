@@ -1,0 +1,240 @@
+[gd_scene load_steps=23 format=4 uid="uid://cmaf04babq2mk"]
+
+[ext_resource type="Script" path="res://scenes/Main/Main.gd" id="1_3jwfp"]
+[ext_resource type="Script" path="res://scripts/Service/Grid.gd" id="2_vomqs"]
+[ext_resource type="Script" path="res://scripts/Service/Camera.gd" id="3_5t4qm"]
+[ext_resource type="Script" path="res://scripts/Service/Controller.gd" id="3_pd713"]
+[ext_resource type="Texture2D" uid="uid://bpfj3of8yajye" path="res://asset/grass.png" id="3_yc0bd"]
+[ext_resource type="Script" path="res://scripts/Service/Pathfinding.gd" id="4_6f040"]
+[ext_resource type="Texture2D" uid="uid://dppie2snlcmwv" path="res://asset/dirt.png" id="4_s0xv0"]
+[ext_resource type="Texture2D" uid="uid://3qc1ett58prb" path="res://asset/stone.png" id="5_fhmc7"]
+[ext_resource type="Texture2D" uid="uid://dmy3cggox0eco" path="res://asset/tree.png" id="6_ckb11"]
+[ext_resource type="Texture2D" uid="uid://eqihewo0urf" path="res://asset/woodwall.png" id="7_ca1y5"]
+[ext_resource type="Texture2D" uid="uid://dg4ugjolr41io" path="res://asset/wood.png" id="11_8mxgy"]
+[ext_resource type="Script" path="res://scenes/Main/info_panel.gd" id="11_vcv2t"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ffffn"]
+texture = ExtResource("4_s0xv0")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fn6r4"]
+texture = ExtResource("3_yc0bd")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_brt25"]
+tile_size = Vector2i(128, 128)
+sources/2 = SubResource("TileSetAtlasSource_ffffn")
+sources/3 = SubResource("TileSetAtlasSource_fn6r4")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vo8hh"]
+texture = ExtResource("5_fhmc7")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rrea"]
+texture = ExtResource("7_ca1y5")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qabmf"]
+texture = ExtResource("6_ckb11")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_o30u3"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_vo8hh")
+sources/1 = SubResource("TileSetAtlasSource_5rrea")
+sources/2 = SubResource("TileSetAtlasSource_qabmf")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ux13e"]
+texture = ExtResource("5_fhmc7")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jsvyk"]
+texture = ExtResource("11_8mxgy")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_a8sj5"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_ux13e")
+sources/1 = SubResource("TileSetAtlasSource_jsvyk")
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("grid", "pf", "controller", "infoPanel")]
+script = ExtResource("1_3jwfp")
+grid = NodePath("Grid")
+pf = NodePath("Services/Pathfinding")
+controller = NodePath("Services/Controller")
+infoPanel = NodePath("UI/InfoPanel")
+
+[node name="Services" type="Node2D" parent="."]
+
+[node name="Pathfinding" type="Node2D" parent="Services" node_paths=PackedStringArray("main", "grid")]
+script = ExtResource("4_6f040")
+main = NodePath("../..")
+grid = NodePath("../../Grid")
+
+[node name="Controller" type="Node2D" parent="Services"]
+script = ExtResource("3_pd713")
+
+[node name="Camera" type="Camera2D" parent="Services"]
+script = ExtResource("3_5t4qm")
+
+[node name="Grid" type="TileMap" parent="." node_paths=PackedStringArray("pf", "floorLayer", "objectLayer", "itemLayer")]
+tile_set = SubResource("TileSet_brt25")
+format = 2
+script = ExtResource("2_vomqs")
+pf = NodePath("../Services/Pathfinding")
+floorLayer = NodePath("FloorLayer")
+objectLayer = NodePath("ObjectLayer")
+itemLayer = NodePath("ItemLayer")
+
+[node name="FloorLayer" type="TileMapLayer" parent="Grid"]
+tile_map_data = PackedByteArray("AAAAAAAAAgAAAAAAAAABAAAAAgAAAAAAAAACAAAAAgAAAAAAAAADAAAAAgAAAAAAAAAEAAAAAgAAAAAAAAAFAAAAAgAAAAAAAAAGAAAAAgAAAAAAAAAHAAAAAgAAAAAAAAAIAAAAAgAAAAAAAAAJAAAAAgAAAAAAAAAKAAAAAwAAAAAAAAALAAAAAwAAAAAAAAAMAAAAAwAAAAAAAAANAAAAAwAAAAAAAAAOAAAAAwAAAAAAAAAPAAAAAwAAAAAAAAAQAAAAAwAAAAAAAAARAAAAAwAAAAAAAAASAAAAAwAAAAAAAAATAAAAAwAAAAAAAAATAAEAAwAAAAAAAAAUAAEAAwAAAAAAAAAVAAEAAwAAAAAAAAAVAAIAAwAAAAAAAAAWAAIAAwAAAAAAAAAWAAMAAwAAAAAAAAAWAAQAAwAAAAAAAAAWAAUAAwAAAAAAAAAVAAYAAwAAAAAAAAAVAAcAAwAAAAAAAAAVAAgAAwAAAAAAAAAVAAkAAwAAAAAAAAAVAAoAAwAAAAAAAAAVAAsAAwAAAAAAAAAWAAYAAwAAAAAAAAAVAAAAAwAAAAAAAAAWAAAAAwAAAAAAAAAWAAEAAwAAAAAAAAAWAAcAAwAAAAAAAAAWAAgAAwAAAAAAAAAWAAkAAwAAAAAAAAAWAAoAAwAAAAAAAAAWAAsAAwAAAAAAAAAWAAwAAwAAAAAAAAAWAA0AAwAAAAAAAAAWAA4AAwAAAAAAAAAWAA8AAwAAAAAAAAAVAA8AAwAAAAAAAAAUAA8AAwAAAAAAAAATAA8AAwAAAAAAAAASAA8AAwAAAAAAAAARAA8AAwAAAAAAAAAQAA8AAwAAAAAAAAAPAA8AAwAAAAAAAAAOAA8AAwAAAAAAAAANAA8AAwAAAAAAAAAMAA8AAwAAAAAAAAALAA8AAwAAAAAAAAAKAA8AAwAAAAAAAAAJAA8AAwAAAAAAAAAIAA8AAwAAAAAAAAAHAA8AAwAAAAAAAAAGAA8AAwAAAAAAAAAFAA8AAwAAAAAAAAAEAA8AAwAAAAAAAAADAA8AAgAAAAAAAAADABAAAgAAAAAAAAACABAAAgAAAAAAAAABABAAAgAAAAAAAAAAABAAAgAAAAAAAAAAAA8AAgAAAAAAAAABAA8AAgAAAAAAAAACAA8AAgAAAAAAAAAWABAAAwAAAAAAAAAVABAAAwAAAAAAAAAUABAAAwAAAAAAAAATABAAAwAAAAAAAAASABAAAwAAAAAAAAARABAAAwAAAAAAAAAQABAAAwAAAAAAAAAPABAAAwAAAAAAAAAOABAAAwAAAAAAAAANABAAAwAAAAAAAAAIABAAAwAAAAAAAAAHABAAAwAAAAAAAAAGABAAAwAAAAAAAAAFABAAAwAAAAAAAAAEABAAAwAAAAAAAAAJABAAAwAAAAAAAAAKABAAAwAAAAAAAAALABAAAwAAAAAAAAAMABAAAwAAAAAAAAAAAA4AAgAAAAAAAAAAAA0AAgAAAAAAAAAAAAwAAwAAAAAAAAAAAAsAAwAAAAAAAAAAAAoAAwAAAAAAAAAAAAkAAwAAAAAAAAAAAAgAAwAAAAAAAAAAAAcAAgAAAAAAAAAAAAYAAgAAAAAAAAAAAAUAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAEAAgAAAAAAAAAUAAAAAwAAAAAAAAAPAAcAAwAAAAAAAAAPAAYAAwAAAAAAAAAPAAUAAwAAAAAAAAAPAAQAAwAAAAAAAAAPAAMAAwAAAAAAAAAPAAIAAwAAAAAAAAAPAAEAAwAAAAAAAAAOAAEAAwAAAAAAAAANAAEAAwAAAAAAAAAMAAEAAwAAAAAAAAALAAEAAwAAAAAAAAAKAAEAAwAAAAAAAAAJAAEAAwAAAAAAAAAIAAEAAwAAAAAAAAAHAAEAAgAAAAAAAAAGAAEAAgAAAAAAAAAFAAEAAgAAAAAAAAAEAAEAAgAAAAAAAAADAAEAAgAAAAAAAAACAAEAAgAAAAAAAAABAAEAAgAAAAAAAAABAAIAAgAAAAAAAAABAAMAAgAAAAAAAAABAAQAAgAAAAAAAAABAAUAAgAAAAAAAAABAAYAAwAAAAAAAAABAAcAAwAAAAAAAAABAAgAAwAAAAAAAAABAAkAAwAAAAAAAAABAAoAAwAAAAAAAAABAAsAAwAAAAAAAAABAAwAAwAAAAAAAAABAA0AAwAAAAAAAAABAA4AAgAAAAAAAAACAA4AAgAAAAAAAAACAA0AAwAAAAAAAAACAAwAAwAAAAAAAAACAAsAAwAAAAAAAAACAAoAAwAAAAAAAAACAAkAAwAAAAAAAAACAAgAAwAAAAAAAAACAAcAAwAAAAAAAAACAAYAAwAAAAAAAAACAAUAAwAAAAAAAAACAAQAAgAAAAAAAAACAAMAAgAAAAAAAAACAAIAAgAAAAAAAAADAAIAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAwAAAAAAAAADAAUAAwAAAAAAAAADAAYAAwAAAAAAAAADAAcAAwAAAAAAAAADAAgAAwAAAAAAAAADAAkAAwAAAAAAAAADAAoAAwAAAAAAAAADAAsAAwAAAAAAAAADAAwAAwAAAAAAAAADAA0AAwAAAAAAAAADAA4AAwAAAAAAAAAEAA4AAwAAAAAAAAAEAA0AAwAAAAAAAAAEAAwAAwAAAAAAAAAEAAsAAwAAAAAAAAAEAAoAAwAAAAAAAAAEAAkAAwAAAAAAAAAEAAgAAwAAAAAAAAAEAAcAAwAAAAAAAAAEAAYAAwAAAAAAAAAEAAUAAwAAAAAAAAAEAAQAAwAAAAAAAAAEAAMAAgAAAAAAAAAEAAIAAgAAAAAAAAAFAAIAAgAAAAAAAAAFAAMAAgAAAAAAAAAFAAQAAwAAAAAAAAAFAAUAAwAAAAAAAAAFAAYAAwAAAAAAAAAFAAcAAwAAAAAAAAAFAAgAAwAAAAAAAAAFAAkAAwAAAAAAAAAFAAoAAwAAAAAAAAAFAAsAAwAAAAAAAAAFAAwAAwAAAAAAAAAFAA0AAwAAAAAAAAAFAA4AAwAAAAAAAAAGAA4AAwAAAAAAAAAGAA0AAwAAAAAAAAAGAAwAAwAAAAAAAAAGAAsAAwAAAAAAAAAGAAoAAwAAAAAAAAAGAAkAAwAAAAAAAAAGAAgAAwAAAAAAAAAGAAcAAwAAAAAAAAAGAAYAAwAAAAAAAAAGAAUAAwAAAAAAAAAGAAQAAwAAAAAAAAAGAAMAAgAAAAAAAAAGAAIAAgAAAAAAAAAHAAIAAwAAAAAAAAAHAAMAAwAAAAAAAAAHAAQAAwAAAAAAAAAHAAUAAwAAAAAAAAAHAAYAAwAAAAAAAAAHAAcAAwAAAAAAAAAHAAgAAwAAAAAAAAAHAAkAAwAAAAAAAAAHAAoAAwAAAAAAAAAHAAsAAwAAAAAAAAAHAAwAAwAAAAAAAAAHAA0AAwAAAAAAAAAHAA4AAwAAAAAAAAAIAA4AAwAAAAAAAAAIAA0AAwAAAAAAAAAIAAwAAwAAAAAAAAAIAAsAAwAAAAAAAAAIAAoAAwAAAAAAAAAIAAkAAwAAAAAAAAAIAAgAAwAAAAAAAAAIAAcAAwAAAAAAAAAIAAYAAwAAAAAAAAAIAAUAAwAAAAAAAAAIAAQAAwAAAAAAAAAIAAMAAwAAAAAAAAAIAAIAAwAAAAAAAAAJAAIAAwAAAAAAAAAJAAMAAwAAAAAAAAAJAAQAAwAAAAAAAAAJAAUAAwAAAAAAAAAJAAYAAwAAAAAAAAAJAAcAAwAAAAAAAAAJAAgAAwAAAAAAAAAJAAkAAwAAAAAAAAAJAAoAAwAAAAAAAAAJAAsAAwAAAAAAAAAJAAwAAwAAAAAAAAAJAA0AAwAAAAAAAAAJAA4AAwAAAAAAAAAKAA4AAwAAAAAAAAAKAA0AAwAAAAAAAAAKAAwAAwAAAAAAAAAKAAsAAwAAAAAAAAAKAAoAAwAAAAAAAAAKAAkAAwAAAAAAAAAKAAgAAwAAAAAAAAAKAAcAAwAAAAAAAAAKAAYAAwAAAAAAAAAKAAUAAwAAAAAAAAAKAAQAAwAAAAAAAAAKAAMAAwAAAAAAAAAKAAIAAwAAAAAAAAALAAIAAwAAAAAAAAALAAMAAwAAAAAAAAALAAQAAwAAAAAAAAALAAUAAwAAAAAAAAALAAYAAwAAAAAAAAALAAcAAwAAAAAAAAALAAgAAwAAAAAAAAALAAkAAwAAAAAAAAALAAoAAwAAAAAAAAALAAsAAwAAAAAAAAALAAwAAwAAAAAAAAALAA0AAwAAAAAAAAALAA4AAwAAAAAAAAAMAA4AAwAAAAAAAAAMAA0AAwAAAAAAAAAMAAwAAwAAAAAAAAAMAAsAAwAAAAAAAAAMAAoAAwAAAAAAAAAMAAkAAwAAAAAAAAAMAAgAAwAAAAAAAAAMAAcAAwAAAAAAAAAMAAYAAwAAAAAAAAAMAAUAAwAAAAAAAAAMAAQAAwAAAAAAAAAMAAMAAwAAAAAAAAAMAAIAAwAAAAAAAAANAAIAAwAAAAAAAAANAAMAAwAAAAAAAAANAAQAAwAAAAAAAAANAAUAAwAAAAAAAAANAAYAAwAAAAAAAAANAAcAAwAAAAAAAAANAAgAAwAAAAAAAAANAAkAAwAAAAAAAAANAAoAAwAAAAAAAAANAAsAAwAAAAAAAAANAAwAAwAAAAAAAAANAA0AAwAAAAAAAAANAA4AAwAAAAAAAAAOAA4AAwAAAAAAAAAOAA0AAwAAAAAAAAAOAAwAAwAAAAAAAAAOAAsAAwAAAAAAAAAOAAoAAwAAAAAAAAAOAAkAAwAAAAAAAAAOAAgAAwAAAAAAAAAOAAcAAwAAAAAAAAAOAAYAAwAAAAAAAAAOAAUAAwAAAAAAAAAOAAQAAwAAAAAAAAAOAAMAAwAAAAAAAAAOAAIAAwAAAAAAAAAPAAgAAwAAAAAAAAAPAAkAAwAAAAAAAAAPAAoAAwAAAAAAAAAPAAsAAwAAAAAAAAAPAAwAAwAAAAAAAAAPAA0AAwAAAAAAAAAPAA4AAwAAAAAAAAAQAA4AAwAAAAAAAAAQAA0AAwAAAAAAAAAQAAwAAwAAAAAAAAAQAAsAAwAAAAAAAAAQAAoAAwAAAAAAAAAQAAkAAwAAAAAAAAAQAAgAAwAAAAAAAAAQAAcAAwAAAAAAAAAQAAYAAwAAAAAAAAAQAAUAAwAAAAAAAAAQAAQAAwAAAAAAAAAQAAMAAwAAAAAAAAAQAAIAAwAAAAAAAAAQAAEAAwAAAAAAAAARAAEAAwAAAAAAAAARAAIAAwAAAAAAAAARAAMAAgAAAAAAAAARAAQAAgAAAAAAAAARAAUAAwAAAAAAAAARAAYAAwAAAAAAAAARAAcAAwAAAAAAAAARAAgAAwAAAAAAAAARAAkAAwAAAAAAAAARAAoAAwAAAAAAAAARAAsAAwAAAAAAAAARAAwAAwAAAAAAAAARAA0AAwAAAAAAAAARAA4AAwAAAAAAAAASAA4AAwAAAAAAAAASAA0AAwAAAAAAAAASAAwAAwAAAAAAAAASAAsAAwAAAAAAAAASAAoAAwAAAAAAAAASAAkAAwAAAAAAAAASAAgAAwAAAAAAAAASAAcAAwAAAAAAAAASAAYAAwAAAAAAAAASAAUAAgAAAAAAAAASAAQAAgAAAAAAAAASAAMAAgAAAAAAAAASAAIAAwAAAAAAAAASAAEAAwAAAAAAAAATAAIAAgAAAAAAAAATAAMAAgAAAAAAAAATAAQAAgAAAAAAAAATAAUAAgAAAAAAAAATAAYAAgAAAAAAAAATAAcAAgAAAAAAAAATAAgAAwAAAAAAAAATAAkAAwAAAAAAAAATAAoAAwAAAAAAAAATAAsAAwAAAAAAAAATAAwAAwAAAAAAAAATAA0AAwAAAAAAAAATAA4AAwAAAAAAAAAUAA4AAwAAAAAAAAAUAA0AAwAAAAAAAAAUAAwAAwAAAAAAAAAUAAsAAwAAAAAAAAAUAAoAAwAAAAAAAAAUAAkAAwAAAAAAAAAUAAgAAwAAAAAAAAAUAAcAAwAAAAAAAAAUAAYAAgAAAAAAAAAUAAUAAgAAAAAAAAAUAAQAAgAAAAAAAAAUAAMAAgAAAAAAAAAUAAIAAgAAAAAAAAAVAAMAAwAAAAAAAAAVAAQAAwAAAAAAAAAVAAUAAwAAAAAAAAAVAAwAAwAAAAAAAAAVAA0AAwAAAAAAAAAVAA4AAwAAAAAAAAA=")
+tile_set = SubResource("TileSet_brt25")
+
+[node name="ObjectLayer" type="TileMapLayer" parent="Grid"]
+tile_map_data = PackedByteArray("AAAGAA0AAgAAAAAAAAAIAAgAAgAAAAAAAAAHAAoAAgAAAAAAAAAFAAoAAgAAAAAAAAAIAAwAAgAAAAAAAAAKAAoAAgAAAAAAAAALAAwAAgAAAAAAAAAJAA4AAgAAAAAAAAAUAAoAAgAAAAAAAAASAAkAAgAAAAAAAAARAAsAAgAAAAAAAAAVAAkAAgAAAAAAAAAQAAgAAgAAAAAAAAAOAAEAAgAAAAAAAAANAAIAAgAAAAAAAAAPAAMAAgAAAAAAAAALAAEAAgAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAADAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAADAAIAAAAAAAAAAAACAAIAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAAAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_o30u3")
+
+[node name="ItemLayer" type="TileMapLayer" parent="Grid"]
+tile_set = SubResource("TileSet_a8sj5")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Buttons" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BaseButtons" type="Control" parent="UI/Buttons"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Buttons/BaseButtons"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_right = 612.0
+grow_vertical = 0
+
+[node name="Construct" type="Button" parent="UI/Buttons/BaseButtons/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Construct"
+
+[node name="Build" type="Button" parent="UI/Buttons/BaseButtons/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Build
+"
+
+[node name="Designate" type="Button" parent="UI/Buttons/BaseButtons/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Designate"
+
+[node name="Tasks" type="Button" parent="UI/Buttons/BaseButtons/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Tasks"
+
+[node name="Bio" type="Button" parent="UI/Buttons/BaseButtons/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Bio"
+
+[node name="ConstructButtons" type="Control" parent="UI/Buttons"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Buttons/ConstructButtons"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_right = 612.0
+grow_vertical = 0
+
+[node name="Back" type="Button" parent="UI/Buttons/ConstructButtons/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Back"
+expand_icon = true
+
+[node name="WoodWall" type="Button" parent="UI/Buttons/ConstructButtons/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Wood Wall"
+icon = ExtResource("7_ca1y5")
+expand_icon = true
+
+[node name="StoneWall" type="Button" parent="UI/Buttons/ConstructButtons/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Stone Wall"
+icon = ExtResource("5_fhmc7")
+expand_icon = true
+
+[node name="DirtFloor" type="Button" parent="UI/Buttons/ConstructButtons/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Dirt"
+icon = ExtResource("4_s0xv0")
+expand_icon = true
+
+[node name="InfoPanel" type="Control" parent="UI" node_paths=PackedStringArray("nameLabel")]
+visible = false
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -182.0
+offset_right = 510.0
+offset_bottom = -60.0
+grow_vertical = 0
+mouse_filter = 1
+script = ExtResource("11_vcv2t")
+nameLabel = NodePath("Name")
+
+[node name="ColorRect" type="ColorRect" parent="UI/InfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.211765, 0.211765, 0.211765, 1)
+
+[node name="Name" type="Label" parent="UI/InfoPanel"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 13.0
+offset_right = 72.0
+offset_bottom = 39.0
+text = "#name
+"
+
+[connection signal="pressed" from="UI/Buttons/ConstructButtons/HBoxContainer/Back" to="." method="_on_back_pressed"]

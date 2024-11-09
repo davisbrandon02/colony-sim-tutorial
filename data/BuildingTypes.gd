@@ -11,14 +11,14 @@ static var list: Dictionary = {
 	"stone": BuildingType.new(
 		"Stone",
 		preload("res://asset/stone.png"),
-		3,
+		0,
 		Vector2.ZERO,
 		false
 	),
 	"woodWall": BuildingType.new(
 	"Wood Wall",
 	preload("res://asset/woodwall.png"),
-	5,
+	1,
 	Vector2.ZERO,
 	false
 	),

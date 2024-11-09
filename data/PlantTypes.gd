@@ -5,10 +5,11 @@ extends Node
 # Texture
 # Source Id
 # Atlas coordinates
-# Navigable
 # Max growth
 # Growth per day
 # Drops[]
+# Navigable
+
 
 static var list = {
 	"tree": PlantType.new(
@@ -16,10 +17,11 @@ static var list = {
 		preload("res://asset/tree.png"),
 		2,
 		Vector2.ZERO,
+		false,
 		5,
 		1,
 		[
 			Item.new(ItemTypes.list["wood"], 8),
-			]
+		],
 	),
 }
