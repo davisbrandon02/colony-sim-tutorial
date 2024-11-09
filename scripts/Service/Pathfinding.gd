@@ -11,12 +11,16 @@ var aStar = AStar2D.new()
 var idMap: Dictionary = {}
 const NEIGHBOR_DIRECTIONS = [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT]
 
+func getPath(from: Vector2i, to: Vector2i):
+	return aStar.get_point_path(idMap[from], idMap[to])
+
 func initialize():
 	# Add all points
 	var idCount: int = 0
 	for tile in grid.grid:
+		var localPos = grid.map_to_local(tile)
 		var cell: Cell = grid.grid[tile]
-		aStar.add_point(idCount, tile)
+		aStar.add_point(idCount, localPos)
 		idMap[tile] = idCount
 		idCount += 1
 	
@@ -33,13 +37,14 @@ func addPoint(pos: Vector2i, addAndConnect: bool = false):
 	else:
 		id = idMap.values()[-1]
 	var newId = id + 1
-	aStar.add_point(newId, pos)
+	var localPos = grid.map_to_local(pos)
+	aStar.add_point(newId, localPos)
 	if addAndConnect:
 		connectPoint(pos)
 	queue_redraw()
 
 func connectPoint(pos: Vector2i):
-	var cell: Cell = grid.grid[Vector2i(pos.x, pos.y)]
+	var cell: Cell = grid.grid[Vector2i(pos)]
 	var pointId = idMap[pos]
 	for direction in NEIGHBOR_DIRECTIONS:
 		var neighborPos: Vector2i = pos + direction

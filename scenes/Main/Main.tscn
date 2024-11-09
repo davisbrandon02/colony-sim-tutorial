@@ -64,19 +64,19 @@ tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_ux13e")
 sources/1 = SubResource("TileSetAtlasSource_jsvyk")
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("grid", "pf", "controller", "infoPanel")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("grid", "pf", "controller", "infoPanel", "units")]
 script = ExtResource("1_3jwfp")
 grid = NodePath("Grid")
 pf = NodePath("Services/Pathfinding")
 controller = NodePath("Services/Controller")
 infoPanel = NodePath("UI/InfoPanel")
+units = NodePath("Units")
 
 [node name="Services" type="Node2D" parent="."]
 
 [node name="Pathfinding" type="Node2D" parent="Services" node_paths=PackedStringArray("main", "grid")]
 top_level = true
 script = ExtResource("4_6f040")
-show_debug = true
 main = NodePath("../..")
 grid = NodePath("../../Grid")
 
@@ -107,6 +107,8 @@ tile_set = SubResource("TileSet_o30u3")
 
 [node name="ItemLayer" type="TileMapLayer" parent="Grid"]
 tile_set = SubResource("TileSet_a8sj5")
+
+[node name="Units" type="Node2D" parent="."]
 
 [node name="UI" type="CanvasLayer" parent="."]
 
