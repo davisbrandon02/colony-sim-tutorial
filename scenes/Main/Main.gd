@@ -24,6 +24,7 @@ func _ready():
 	var unit1 = preload("res://scenes/Entity/Unit/unit.tscn").instantiate()
 	unit1.pos = Vector2(4,4)
 	unit1.position = Vector2(4,4) * 128
-	unit1.pathfinding = pf
 	units.add_child(unit1)
+	unit1.get_node("Services/UnitPathfinding").pf = pf
+	unit1.get_node("Services/UnitPathfinding").grid = grid
 	unit1.setPath(Vector2i(12,7))

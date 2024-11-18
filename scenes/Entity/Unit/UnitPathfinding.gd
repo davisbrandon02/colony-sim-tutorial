@@ -2,6 +2,8 @@ class_name UnitPathfinding
 extends Node2D
 
 @export var unit: Unit
+var pf: Pathfinding
+var grid: Grid
 
 var path = []
 
@@ -20,5 +22,7 @@ func _process(delta: float) -> void:
 
 func getPathTo(_pos: Vector2i):
 	unit.position = unit.pos * TILE_SIZE
-	path = unit.pathfinding.getPath(unit.pos, _pos)
-	print(path)
+	path = pf.getPath(unit.pos, _pos)
+
+func goToTask(task: Task):
+	var workableTiles: Array[Vector2i]

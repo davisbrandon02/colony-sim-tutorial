@@ -2,12 +2,12 @@ class_name Building
 extends Object
 
 var buildingType: BuildingType
-var pos: Vector2
+var cell: Cell
 var built: bool
 
-func _init(_buildingType: BuildingType, _pos: Vector2, _built: bool) -> void:
+func _init(_buildingType: BuildingType, _cell: Cell, _built: bool) -> void:
 	buildingType = _buildingType
-	pos = _pos
+	cell = _cell
 	built = _built
 
 func getType():

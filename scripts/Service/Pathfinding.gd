@@ -18,7 +18,7 @@ func initialize():
 	# Add all points
 	var idCount: int = 0
 	for tile in grid.grid:
-		var localPos = grid.map_to_local(tile)
+		var localPos = grid.floorLayer.map_to_local(tile)
 		var cell: Cell = grid.grid[tile]
 		aStar.add_point(idCount, localPos)
 		idMap[tile] = idCount

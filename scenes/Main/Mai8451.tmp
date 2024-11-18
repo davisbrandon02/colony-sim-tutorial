@@ -68,7 +68,7 @@ sources/1 = SubResource("TileSetAtlasSource_70b41")
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("grid", "pf", "controller", "infoPanel", "units")]
 script = ExtResource("1_3jwfp")
-grid = NodePath("Grid")
+grid = NodePath("")
 pf = NodePath("Services/Pathfinding")
 controller = NodePath("Services/Controller")
 infoPanel = NodePath("UI/InfoPanel")
@@ -80,7 +80,7 @@ units = NodePath("Units")
 top_level = true
 script = ExtResource("4_6f040")
 main = NodePath("../..")
-grid = NodePath("../../Grid")
+grid = NodePath("")
 
 [node name="Controller" type="Node2D" parent="Services" node_paths=PackedStringArray("grid", "pathfinding")]
 script = ExtResource("3_pd713")

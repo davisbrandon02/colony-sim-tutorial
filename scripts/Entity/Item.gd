@@ -2,11 +2,12 @@ class_name Item
 extends Object
 
 var itemType: ItemType
+var cell: Cell
 var count: int
-var pos: Vector2
 
-func _init(_itemType: ItemType, _count: int) -> void:
+func _init(_itemType: ItemType, _cell: Cell, _count: int) -> void:
 	itemType = _itemType
+	cell = _cell
 	count = _count
 
 func getType():

@@ -80,7 +80,7 @@ units = NodePath("Units")
 top_level = true
 script = ExtResource("4_6f040")
 main = NodePath("../..")
-grid = NodePath("../../Grid")
+grid = NodePath("")
 
 [node name="Controller" type="Node2D" parent="Services" node_paths=PackedStringArray("grid", "pathfinding")]
 script = ExtResource("3_pd713")

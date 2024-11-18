@@ -2,11 +2,11 @@ class_name Floor
 extends Object
 
 var floorType: FloorType
-var pos: Vector2
+var cell: Cell
 
-func _init(_floorType: FloorType, _pos: Vector2) -> void:
+func _init(_floorType: FloorType, _cell: Cell) -> void:
 	floorType = _floorType
-	pos = _pos
+	cell = _cell
 
 func getType():
 	return Floor

@@ -1,21 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://chxdhnp2qv23c"]
+[gd_scene load_steps=5 format=3 uid="uid://chxdhnp2qv23c"]
 
 [ext_resource type="Script" path="res://scenes/Entity/Unit/unit.gd" id="1_1enlr"]
 [ext_resource type="Script" path="res://scenes/Entity/Unit/UnitPathfinding.gd" id="2_cwu88"]
 [ext_resource type="Texture2D" uid="uid://dkwvujnpa1yf5" path="res://asset/colonist.png" id="2_kskkm"]
+[ext_resource type="Script" path="res://scenes/Entity/Unit/tasks.gd" id="3_g21aj"]
 
-[node name="Unit" type="Node2D" node_paths=PackedStringArray("unitPathfinding")]
+[node name="Unit" type="Node2D" node_paths=PackedStringArray("unitPathfinding", "unitTaskManager")]
 texture_filter = 1
 script = ExtResource("1_1enlr")
-unitPathfinding = NodePath("Services/Pathfinding")
+unitPathfinding = NodePath("Services/UnitPathfinding")
+unitTaskManager = NodePath("Services/Tasks")
 
 [node name="Services" type="Node2D" parent="."]
 
-[node name="Pathfinding" type="Node2D" parent="Services" node_paths=PackedStringArray("unit")]
+[node name="UnitPathfinding" type="Node2D" parent="Services" node_paths=PackedStringArray("unit")]
 script = ExtResource("2_cwu88")
 unit = NodePath("../..")
 
-[node name="TaskManager" type="Node2D" parent="Services"]
+[node name="Tasks" type="Node2D" parent="Services" node_paths=PackedStringArray("unit")]
+script = ExtResource("3_g21aj")
+unit = NodePath("../..")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_kskkm")

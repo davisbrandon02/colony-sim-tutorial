@@ -7,7 +7,7 @@ extends Node
 # Atlas coordinates
 # Max growth
 # Growth per day
-# Drops[]
+# Drops[] {type, amount}
 # Navigable
 
 
@@ -21,7 +21,10 @@ static var list = {
 		5,
 		1,
 		[
-			Item.new(ItemTypes.list["wood"], 8),
+			{
+				'type': ItemTypes.list['wood'],
+				'amount': 8,
+			}
 		],
 	),
 }
