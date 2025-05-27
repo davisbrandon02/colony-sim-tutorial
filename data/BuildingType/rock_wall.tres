@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BuildingType" load_steps=3 format=3 uid="uid://b2kd2m0qgmbw5"]
+
+[ext_resource type="Script" uid="uid://coo60y458rdth" path="res://scripts/Type/BuildingType.gd" id="1_6605s"]
+[ext_resource type="Texture2D" uid="uid://3qc1ett58prb" path="res://asset/rockwall.png" id="2_jycw3"]
+
+[resource]
+script = ExtResource("1_6605s")
+name = "Rock Wall"
+texture = ExtResource("2_jycw3")
+sourceId = 2
+atlasCoords = Vector2(0, 0)
+navigable = false
+metadata/_custom_type_script = "uid://coo60y458rdth"

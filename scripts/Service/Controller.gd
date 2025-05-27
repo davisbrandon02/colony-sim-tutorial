@@ -3,9 +3,13 @@ extends Node2D
 
 @export var grid: Grid
 @export var pathfinding: Pathfinding
+@export var zoneSvc: ZoneService
+@export var units: Node2D
 
 signal set_tile(pos, object)
 signal object_selected(object: Object)
+
+var selectedUnits: Array[Unit]
 
 # Input - tile selected
 func tileSelected(_pos: Vector2i):
@@ -22,16 +26,33 @@ func tileSelected(_pos: Vector2i):
 				emit_signal("object_selected", cell.building)
 			elif cell.plant:
 				emit_signal("object_selected", cell.plant)
-		pathfinding.disconnectPoint(_pos)
+
+func unitSelected(unit: Unit):
+	if state == STATE.select:
+		selectedUnits.append(unit)
+		unit.get_node("SelectedRect").visible = true
+
+func unitDeselected(unit: Unit):
+	selectedUnits.erase(unit)
+	unit.get_node("SelectedRect").visible = false
+
+func orderMoveTo(_pos: Vector2i):
+	for u:Unit in selectedUnits:
+		u.setPath(_pos)
 
 # Input - key press
 func _input(event):
-	if event.is_action("escape") and state != STATE.select:
-		state = STATE.select
+	if event.is_action("escape"):
+		if state == STATE.select:
+			for u:Unit in selectedUnits:
+				unitDeselected(u)
+		elif state == STATE.placing:
+			state = STATE.select
 
 enum STATE {
 	select,
-	placing
+	placing,
+	zoning,
 }
 var state = STATE.select
 func setState(_state: STATE):

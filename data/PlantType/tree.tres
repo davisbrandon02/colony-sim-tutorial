@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PlantType" load_steps=3 format=3 uid="uid://ixamnjr0mhfa"]
+
+[ext_resource type="Script" uid="uid://d2i5f5qxvvsqc" path="res://scripts/Type/PlantType.gd" id="1_uqquf"]
+[ext_resource type="Texture2D" uid="uid://dmy3cggox0eco" path="res://asset/tree.png" id="2_5kx6t"]
+
+[resource]
+script = ExtResource("1_uqquf")
+name = "Tree"
+texture = ExtResource("2_5kx6t")
+sourceId = 4
+atlasCoords = null
+navigableWhileGrowing = null
+navigableWhileMature = null
+maxGrowth = 20.0
+growthPerDay = 5.0
+drops = []
+metadata/_custom_type_script = "uid://d2i5f5qxvvsqc"

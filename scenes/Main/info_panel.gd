@@ -4,7 +4,7 @@ extends Control
 var selectedObject: Object
 @export var nameLabel: Label
 
-func setSelectedObject(object: Object):
+func setSelectedObject(object):
 	if object.getType() in [Plant, Item, Building]:
 		visible = true
 		match object.getType():

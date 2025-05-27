@@ -1,15 +1,13 @@
 class_name FloorType
-extends Object
+extends Resource
 
-var name: String
-var texture: Texture
-var sourceId: int
-var atlasCoords: Vector2
-var navigable: bool
+@export var name: String
+@export var texture: Texture = load("res://asset/missing.png")
+@export var sourceId: int
+@export var atlasCoords: Vector2 = Vector2(0,0)
+@export var navigable: bool = true
 
-func _init(_name, _texture, _sourceId, _atlasCoords, _navigable):
-	name = _name
-	texture = _texture
-	sourceId = _sourceId
-	atlasCoords = _atlasCoords
-	navigable = _navigable
+static var types: Dictionary[String,FloorType] = {
+	"dirt": load("res://data/FloorType/dirt.tres"),
+	"grass": load("res://data/FloorType/grass.tres"),
+}

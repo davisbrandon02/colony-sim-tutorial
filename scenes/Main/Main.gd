@@ -10,6 +10,7 @@ extends Node2D
 func _ready():
 #	Connect grid input to controller
 	grid.tile_selected.connect(controller.tileSelected)
+	grid.tile_move_clicked.connect(controller.orderMoveTo)
 	
 #	Connect controller to UI
 	controller.object_selected.connect(infoPanel.setSelectedObject)
@@ -28,3 +29,11 @@ func _ready():
 	unit1.get_node("Services/UnitPathfinding").pf = pf
 	unit1.get_node("Services/UnitPathfinding").grid = grid
 	unit1.setPath(Vector2i(12,7))
+	
+	# Connect unit signals
+	for u:Unit in units.get_children():
+		u.selected.connect(controller.unitSelected)
+
+
+func _on_construct_pressed():
+	pass # Replace with function body.

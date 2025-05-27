@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemType" load_steps=3 format=3 uid="uid://ciieqx1gcmf27"]
+
+[ext_resource type="Script" uid="uid://c28mx58tstm2o" path="res://scripts/Type/ItemType.gd" id="1_01hmd"]
+[ext_resource type="Texture2D" uid="uid://dlfjky3nwxy2o" path="res://asset/stoneitem.png" id="2_rlc21"]
+
+[resource]
+script = ExtResource("1_01hmd")
+name = "Stone"
+texture = ExtResource("2_rlc21")
+sourceId = 6
+atlasCoords = Vector2(0, 0)
+maxStack = 50
+metadata/_custom_type_script = "uid://c28mx58tstm2o"

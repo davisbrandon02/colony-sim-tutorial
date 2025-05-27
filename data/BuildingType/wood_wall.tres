@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BuildingType" load_steps=3 format=3 uid="uid://8y4ojfmcp5ak"]
+
+[ext_resource type="Script" uid="uid://coo60y458rdth" path="res://scripts/Type/BuildingType.gd" id="1_qfe8y"]
+[ext_resource type="Texture2D" uid="uid://eqihewo0urf" path="res://asset/woodwall.png" id="2_qfe8y"]
+
+[resource]
+script = ExtResource("1_qfe8y")
+name = "Wood Wall"
+texture = ExtResource("2_qfe8y")
+sourceId = 3
+atlasCoords = Vector2(0, 0)
+navigable = false
+metadata/_custom_type_script = "uid://coo60y458rdth"

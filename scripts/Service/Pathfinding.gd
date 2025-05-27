@@ -70,9 +70,9 @@ func _draw():
 			var tileId = idMap[tile]
 			var cell: Cell = grid.grid[tile]
 			if cell.isNavigable():
-				draw_circle(grid.map_to_local(tile), 5, Color.DARK_GREEN)
+				draw_circle(grid.floorLayer.map_to_local(tile), 5, Color.DARK_GREEN)
 			else:
-				draw_circle(grid.map_to_local(tile), 5, Color.RED)
+				draw_circle(grid.floorLayer.map_to_local(tile), 5, Color.RED)
 			for dir in NEIGHBOR_DIRECTIONS:
 				var neighborPos: Vector2i = tile + dir
 				if grid.grid.has(neighborPos):
@@ -80,6 +80,6 @@ func _draw():
 					var neighborID = idMap[neighborPos]
 					if neighborCell.isNavigable():
 						if aStar.are_points_connected(tileId, neighborID):
-							draw_line(grid.map_to_local(tile), grid.map_to_local(neighborPos), Color.GREEN)
+							draw_line(grid.floorLayer.map_to_local(tile), grid.floorLayer.map_to_local(neighborPos), Color.GREEN)
 						else:
-							draw_line(grid.map_to_local(tile), grid.map_to_local(neighborPos), Color.RED)
+							draw_line(grid.floorLayer.map_to_local(tile), grid.floorLayer.map_to_local(neighborPos), Color.RED)

@@ -11,10 +11,8 @@ var selectedObject = null :
 			match value.get_class():
 				"Unit":
 					$InfoPanel/Name.text = value.data.name
-					$BaseButtons/HBoxContainer/Bio.visible = true
 		else:
 			$InfoPanel.visible = false
-			$BaseButtons/HBoxContainer/Bio.visible = false
 
 signal setPlacingObject(_data)
 

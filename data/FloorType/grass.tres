@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="FloorType" load_steps=3 format=3 uid="uid://brp3qcacqubci"]
+
+[ext_resource type="Script" uid="uid://8anmavlcen6r" path="res://scripts/Type/FloorType.gd" id="1_6ceo7"]
+[ext_resource type="Texture2D" uid="uid://bpfj3of8yajye" path="res://asset/grass.png" id="2_ll2qc"]
+
+[resource]
+script = ExtResource("1_6ceo7")
+name = "Grass"
+texture = ExtResource("2_ll2qc")
+sourceId = 1
+atlasCoords = Vector2(0, 0)
+navigable = true
+metadata/_custom_type_script = "uid://8anmavlcen6r"

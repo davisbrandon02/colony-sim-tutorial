@@ -9,6 +9,8 @@ var moveSpeed: float = 200.0
 
 var pos: Vector2i
 
+signal selected(unit)
+
 enum STATE {
 	idle,
 	moving,
@@ -24,3 +26,6 @@ func setPath(_pos: Vector2i):
 
 func assignTask(task: Task):
 	pass
+
+func _on_button_pressed():
+	emit_signal("selected", self)

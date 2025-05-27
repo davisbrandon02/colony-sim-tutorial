@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemType" load_steps=3 format=3 uid="uid://dx8ufh2ot2rvo"]
+
+[ext_resource type="Script" uid="uid://c28mx58tstm2o" path="res://scripts/Type/ItemType.gd" id="1_ukpte"]
+[ext_resource type="Texture2D" uid="uid://dg4ugjolr41io" path="res://asset/wood.png" id="2_jtdy5"]
+
+[resource]
+script = ExtResource("1_ukpte")
+name = "Wood"
+texture = ExtResource("2_jtdy5")
+sourceId = 5
+atlasCoords = Vector2(0, 0)
+maxStack = 0
+metadata/_custom_type_script = "uid://c28mx58tstm2o"

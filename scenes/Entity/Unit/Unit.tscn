@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://chxdhnp2qv23c"]
 
-[ext_resource type="Script" uid="uid://phb8uo385kjp" path="res://scenes/Entity/Unit/unit.gd" id="1_1enlr"]
+[ext_resource type="Script" uid="uid://phb8uo385kjp" path="res://scenes/Entity/Unit/Unit.gd" id="1_1enlr"]
 [ext_resource type="Script" uid="uid://dk2auf216l46h" path="res://scenes/Entity/Unit/UnitPathfinding.gd" id="2_cwu88"]
 [ext_resource type="Texture2D" uid="uid://dkwvujnpa1yf5" path="res://asset/colonist.png" id="2_kskkm"]
 [ext_resource type="Script" uid="uid://bnicuiit8ap6k" path="res://scenes/Entity/Unit/tasks.gd" id="3_g21aj"]
@@ -21,15 +21,25 @@ unit = NodePath("../..")
 script = ExtResource("3_g21aj")
 unit = NodePath("../..")
 
+[node name="SelectedRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(0.203922, 1, 1, 0.403922)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_kskkm")
-centered = false
 
 [node name="Button" type="Button" parent="."]
 offset_left = -64.0
 offset_top = -64.0
 offset_right = 64.0
 offset_bottom = 64.0
+focus_mode = 0
 flat = true
 
 [node name="Line2D" type="Line2D" parent="."]
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

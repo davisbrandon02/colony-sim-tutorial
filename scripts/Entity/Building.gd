@@ -1,13 +1,13 @@
 class_name Building
 extends Object
 
-var buildingType: BuildingType
+var type: BuildingType
 var cell: Cell
 var rotation: float
 var built: bool
 
-func _init(_buildingType: BuildingType, _cell: Cell, _built: bool) -> void:
-	buildingType = _buildingType
+func _init(_type: BuildingType, _cell: Cell, _built: bool) -> void:
+	type = _type
 	cell = _cell
 	built = _built
 

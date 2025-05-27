@@ -1,15 +1,13 @@
 class_name ItemType
-extends Object
+extends Resource
 
-var name: String
-var texture: Texture
-var sourceId: int
-var atlasCoords: Vector2
-var maxStack: int
+@export var name: String
+@export var texture: Texture = load("res://asset/missing.png")
+@export var sourceId: int = 0
+@export var atlasCoords: Vector2 = Vector2(0,0)
+@export var maxStack: int = 50
 
-func _init(_name, _texture, _sourceId, _atlasCoords, _maxStack) -> void:
-	name = _name
-	texture = _texture
-	sourceId = _sourceId
-	atlasCoords = _atlasCoords
-	maxStack = _maxStack
+static var types: Dictionary[String, ItemType] = {
+	"stone": load("res://data/ItemType/stone.tres"),
+	"wood": load("res://data/ItemType/wood.tres"),
+}

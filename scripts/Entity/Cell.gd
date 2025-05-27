@@ -14,9 +14,12 @@ func isNavigable():
 	if !building and !plant:
 		return true
 	if building:
-		return building.buildingType.navigable
+		return building.type.navigable
 	if plant:
-		return plant.plantType.navigable
+		if plant.mature:
+			return plant.type.navigableWhileMature
+		else:
+			return plant.type.navigableWhileGrowing
 	else:
 		return false
 
