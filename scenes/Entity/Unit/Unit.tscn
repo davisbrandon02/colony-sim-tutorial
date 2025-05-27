@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://chxdhnp2qv23c"]
 
-[ext_resource type="Script" path="res://scenes/Entity/Unit/unit.gd" id="1_1enlr"]
-[ext_resource type="Script" path="res://scenes/Entity/Unit/UnitPathfinding.gd" id="2_cwu88"]
+[ext_resource type="Script" uid="uid://phb8uo385kjp" path="res://scenes/Entity/Unit/unit.gd" id="1_1enlr"]
+[ext_resource type="Script" uid="uid://dk2auf216l46h" path="res://scenes/Entity/Unit/UnitPathfinding.gd" id="2_cwu88"]
 [ext_resource type="Texture2D" uid="uid://dkwvujnpa1yf5" path="res://asset/colonist.png" id="2_kskkm"]
-[ext_resource type="Script" path="res://scenes/Entity/Unit/tasks.gd" id="3_g21aj"]
+[ext_resource type="Script" uid="uid://bnicuiit8ap6k" path="res://scenes/Entity/Unit/tasks.gd" id="3_g21aj"]
 
 [node name="Unit" type="Node2D" node_paths=PackedStringArray("unitPathfinding", "unitTaskManager")]
 texture_filter = 1

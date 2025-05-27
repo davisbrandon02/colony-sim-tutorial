@@ -1,19 +1,19 @@
 [gd_scene load_steps=25 format=4 uid="uid://cmaf04babq2mk"]
 
-[ext_resource type="Script" path="res://scenes/Main/Main.gd" id="1_3jwfp"]
-[ext_resource type="Script" path="res://scripts/Service/Grid.gd" id="2_vomqs"]
-[ext_resource type="Script" path="res://scripts/Service/Camera.gd" id="3_5t4qm"]
-[ext_resource type="Script" path="res://scripts/Service/Controller.gd" id="3_pd713"]
+[ext_resource type="Script" uid="uid://fmomcflk2sg" path="res://scenes/Main/Main.gd" id="1_3jwfp"]
+[ext_resource type="Script" uid="uid://cl4683jg1jpr7" path="res://scripts/Service/Grid.gd" id="2_vomqs"]
+[ext_resource type="Script" uid="uid://ctffgsfpcfebw" path="res://scripts/Service/Camera.gd" id="3_5t4qm"]
+[ext_resource type="Script" uid="uid://wegbtae2r3ki" path="res://scripts/Service/Controller.gd" id="3_pd713"]
 [ext_resource type="Texture2D" uid="uid://bpfj3of8yajye" path="res://asset/grass.png" id="3_yc0bd"]
-[ext_resource type="Script" path="res://scripts/Service/Pathfinding.gd" id="4_6f040"]
-[ext_resource type="Script" path="res://scripts/Service/TaskManager.gd" id="4_a3nor"]
+[ext_resource type="Script" uid="uid://d00tpo4gfxylg" path="res://scripts/Service/Pathfinding.gd" id="4_6f040"]
+[ext_resource type="Script" uid="uid://s3hwgaomlvw2" path="res://scripts/Service/TaskManager.gd" id="4_a3nor"]
 [ext_resource type="Texture2D" uid="uid://dppie2snlcmwv" path="res://asset/dirt.png" id="4_s0xv0"]
 [ext_resource type="Texture2D" uid="uid://3qc1ett58prb" path="res://asset/stone.png" id="5_fhmc7"]
 [ext_resource type="Texture2D" uid="uid://dmy3cggox0eco" path="res://asset/tree.png" id="6_ckb11"]
 [ext_resource type="Texture2D" uid="uid://eqihewo0urf" path="res://asset/woodwall.png" id="7_ca1y5"]
 [ext_resource type="Texture2D" uid="uid://dg4ugjolr41io" path="res://asset/wood.png" id="11_8mxgy"]
 [ext_resource type="Texture2D" uid="uid://dlfjky3nwxy2o" path="res://asset/stoneitem.png" id="11_gr1ae"]
-[ext_resource type="Script" path="res://scenes/Main/info_panel.gd" id="11_vcv2t"]
+[ext_resource type="Script" uid="uid://nnmysov71l0a" path="res://scenes/Main/info_panel.gd" id="11_vcv2t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_paylg"]
 texture = ExtResource("4_s0xv0")
@@ -82,9 +82,8 @@ script = ExtResource("4_6f040")
 main = NodePath("../..")
 grid = NodePath("../../Grid")
 
-[node name="Controller" type="Node2D" parent="Services" node_paths=PackedStringArray("grid", "pathfinding")]
+[node name="Controller" type="Node2D" parent="Services" node_paths=PackedStringArray("pathfinding")]
 script = ExtResource("3_pd713")
-grid = NodePath("")
 pathfinding = NodePath("../Pathfinding")
 
 [node name="TaskManager" type="Node2D" parent="Services"]
