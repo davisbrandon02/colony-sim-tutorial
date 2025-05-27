@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://s3hwgaomlvw2" path="res://scripts/Service/TaskManager.gd" id="4_a3nor"]
 [ext_resource type="Texture2D" uid="uid://dppie2snlcmwv" path="res://asset/dirt.png" id="4_s0xv0"]
 [ext_resource type="Texture2D" uid="uid://3qc1ett58prb" path="res://asset/rockwall.png" id="5_fhmc7"]
-[ext_resource type="Script" uid="uid://dmt6lby28jyse" path="res://scripts/Service/zone_service.gd" id="6_72nt1"]
+[ext_resource type="Script" uid="uid://dmt6lby28jyse" path="res://scripts/Service/ZoneHelper.gd" id="6_72nt1"]
 [ext_resource type="Texture2D" uid="uid://dmy3cggox0eco" path="res://asset/tree.png" id="6_ckb11"]
 [ext_resource type="Texture2D" uid="uid://eqihewo0urf" path="res://asset/woodwall.png" id="7_ca1y5"]
 [ext_resource type="Texture2D" uid="uid://dg4ugjolr41io" path="res://asset/wood.png" id="11_8mxgy"]
@@ -148,11 +148,10 @@ script = ExtResource("4_6f040")
 main = NodePath("../..")
 grid = NodePath("../../Grid")
 
-[node name="Controller" type="Node2D" parent="Services" node_paths=PackedStringArray("grid", "pathfinding", "zoneSvc", "units")]
+[node name="Controller" type="Node2D" parent="Services" node_paths=PackedStringArray("grid", "pathfinding", "units")]
 script = ExtResource("3_pd713")
 grid = NodePath("../../Grid")
 pathfinding = NodePath("../Pathfinding")
-zoneSvc = NodePath("../ZoneService")
 units = NodePath("../../Units")
 
 [node name="TaskManager" type="Node2D" parent="Services"]
@@ -161,7 +160,7 @@ script = ExtResource("4_a3nor")
 [node name="Camera" type="Camera2D" parent="Services"]
 script = ExtResource("3_5t4qm")
 
-[node name="ZoneService" type="Node2D" parent="Services"]
+[node name="ZoneHelper" type="Node2D" parent="Services"]
 script = ExtResource("6_72nt1")
 
 [node name="Grid" type="Node2D" parent="." node_paths=PackedStringArray("pf", "floorLayer", "buildingLayer", "plantLayer", "itemLayer", "itemAmountLayer")]

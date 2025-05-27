@@ -1,13 +1,13 @@
-class_name ZoneService
+class_name ZoneHelper
 extends Node2D
 
 var currentZone: Zone
 var dragFrom: Vector2i
-var dragTo: Vector2i
+var isDragging: bool
 var tilesInDrag: Array[Cell]
 
 func startDrag():
-	pass
+	isDragging = true
 
 func stopDrag():
 	pass

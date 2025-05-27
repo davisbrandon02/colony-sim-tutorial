@@ -3,7 +3,7 @@ extends Node2D
 
 @export var grid: Grid
 @export var pathfinding: Pathfinding
-@export var zoneSvc: ZoneService
+@export var zoneHelper: ZoneHelper
 @export var units: Node2D
 
 signal set_tile(pos, object)
@@ -48,6 +48,12 @@ func _input(event):
 				unitDeselected(u)
 		elif state == STATE.placing:
 			state = STATE.select
+	elif event.is_action("left_click") and event.is_pressed():
+		if state == STATE.zoning:
+			zoneHelper.startDrag()
+	elif event.is_action("left_click") and event.is_released():
+		if state == STATE.zoning:
+			zoneHelper.stopDrag()
 
 enum STATE {
 	select,
