@@ -132,13 +132,14 @@ tile_size = Vector2i(128, 128)
 sources/6 = SubResource("TileSetAtlasSource_33p03")
 sources/5 = SubResource("TileSetAtlasSource_70b41")
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("grid", "pf", "controller", "infoPanel", "units")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("grid", "pf", "controller", "infoPanel", "units", "guiBtns")]
 script = ExtResource("1_3jwfp")
 grid = NodePath("Grid")
 pf = NodePath("Services/Pathfinding")
 controller = NodePath("Services/Controller")
 infoPanel = NodePath("UI/InfoPanel")
 units = NodePath("Units")
+guiBtns = NodePath("UI/Buttons")
 
 [node name="Services" type="Node2D" parent="."]
 
@@ -148,20 +149,22 @@ script = ExtResource("4_6f040")
 main = NodePath("../..")
 grid = NodePath("../../Grid")
 
-[node name="Controller" type="Node2D" parent="Services" node_paths=PackedStringArray("grid", "pathfinding", "units")]
+[node name="Controller" type="Node2D" parent="Services" node_paths=PackedStringArray("grid", "pathfinding", "zoneHelper", "units")]
 script = ExtResource("3_pd713")
 grid = NodePath("../../Grid")
 pathfinding = NodePath("../Pathfinding")
+zoneHelper = NodePath("ZoneHelper")
 units = NodePath("../../Units")
+
+[node name="ZoneHelper" type="Node2D" parent="Services/Controller" node_paths=PackedStringArray("grid")]
+script = ExtResource("6_72nt1")
+grid = NodePath("../../../Grid")
 
 [node name="TaskManager" type="Node2D" parent="Services"]
 script = ExtResource("4_a3nor")
 
 [node name="Camera" type="Camera2D" parent="Services"]
 script = ExtResource("3_5t4qm")
-
-[node name="ZoneHelper" type="Node2D" parent="Services"]
-script = ExtResource("6_72nt1")
 
 [node name="Grid" type="Node2D" parent="." node_paths=PackedStringArray("pf", "floorLayer", "buildingLayer", "plantLayer", "itemLayer", "itemAmountLayer")]
 script = ExtResource("2_vomqs")
@@ -326,22 +329,48 @@ layout_mode = 2
 text = "Back"
 expand_icon = true
 
-[node name="Create" type="Button" parent="UI/Buttons/StockpileButtons/HBoxContainer"]
+[node name="CreateZone" type="Button" parent="UI/Buttons/StockpileButtons/HBoxContainer"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 text = "Create"
 expand_icon = true
 
-[node name="Shrink" type="Button" parent="UI/Buttons/StockpileButtons/HBoxContainer"]
+[node name="ShrinkZone" type="Button" parent="UI/Buttons/StockpileButtons/HBoxContainer"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 text = "Shrink"
 expand_icon = true
 
-[node name="Delete" type="Button" parent="UI/Buttons/StockpileButtons/HBoxContainer"]
+[node name="DeleteZone" type="Button" parent="UI/Buttons/StockpileButtons/HBoxContainer"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 text = "Delete"
+expand_icon = true
+
+[node name="CancelButtons" type="Control" parent="UI/Buttons"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Buttons/CancelButtons"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_right = 612.0
+grow_vertical = 0
+
+[node name="Cancel" type="Button" parent="UI/Buttons/CancelButtons/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Cancel"
 expand_icon = true
 
 [node name="InfoPanel" type="Control" parent="UI" node_paths=PackedStringArray("nameLabel")]
@@ -378,5 +407,8 @@ text = "#name
 "
 
 [connection signal="pressed" from="UI/Buttons/BaseButtons/HBoxContainer/Construct" to="UI/Buttons" method="_on_construct_pressed"]
-[connection signal="pressed" from="UI/Buttons/ConstructButtons/HBoxContainer/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="UI/Buttons/StockpileButtons/HBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="UI/Buttons/BaseButtons/HBoxContainer/Stockpile" to="UI/Buttons" method="_on_stockpile_pressed"]
+[connection signal="pressed" from="UI/Buttons/ConstructButtons/HBoxContainer/Back" to="UI/Buttons" method="_on_back_pressed"]
+[connection signal="pressed" from="UI/Buttons/StockpileButtons/HBoxContainer/Back" to="UI/Buttons" method="_on_back_pressed"]
+[connection signal="pressed" from="UI/Buttons/StockpileButtons/HBoxContainer/CreateZone" to="UI/Buttons" method="_on_create_zone_pressed"]
+[connection signal="pressed" from="UI/Buttons/CancelButtons/HBoxContainer/Cancel" to="UI/Buttons" method="_on_cancel_pressed"]

@@ -6,20 +6,27 @@ extends Node2D
 @export var controller: Controller
 @export var infoPanel: InfoPanel
 @export var units: Node2D
+@export var guiBtns: GUIButtons
 
 func _ready():
 #	Connect grid input to controller
 	grid.tile_selected.connect(controller.tileSelected)
 	grid.tile_move_clicked.connect(controller.orderMoveTo)
 	
-#	Connect controller to UI
-	controller.object_selected.connect(infoPanel.setSelectedObject)
-	
 #	Initialize the game grid
 	grid.initializeGrid()
 	
 #	Initialize the pathfinding system
 	pf.initialize()
+	
+	# Initialize GUI
+	guiBtns.initialize()
+	
+#	Connect controller to UI
+	controller.object_selected.connect(infoPanel.setSelectedObject)
+	guiBtns.startPlacing.connect(controller.setPlacing)
+	guiBtns.startZoning.connect(controller.setStockpileZone)
+	guiBtns.cancel.connect(controller.cancelAction)
 	
 	# Place colonists
 	var unit1 = preload("res://scenes/Entity/Unit/unit.tscn").instantiate()
@@ -33,7 +40,3 @@ func _ready():
 	# Connect unit signals
 	for u:Unit in units.get_children():
 		u.selected.connect(controller.unitSelected)
-
-
-func _on_construct_pressed():
-	pass # Replace with function body.

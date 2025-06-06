@@ -49,10 +49,10 @@ func _input(event):
 		elif state == STATE.placing:
 			state = STATE.select
 	elif event.is_action("left_click") and event.is_pressed():
-		if state == STATE.zoning:
+		if state == STATE.zoning and zoneHelper.isDragging == false:
 			zoneHelper.startDrag()
 	elif event.is_action("left_click") and event.is_released():
-		if state == STATE.zoning:
+		if state == STATE.zoning and zoneHelper.isDragging == true:
 			zoneHelper.stopDrag()
 
 enum STATE {
@@ -70,3 +70,11 @@ func setPlacing(_data):
 	if _data.type in [FloorType, BuildingType, PlantType]:
 		state = STATE.placing
 		placing = _data
+
+# Zoning
+func setStockpileZone():
+	state = STATE.zoning
+
+# Cancel action
+func cancelAction():
+	state = STATE.select

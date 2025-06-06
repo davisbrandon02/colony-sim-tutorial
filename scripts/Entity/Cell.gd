@@ -9,6 +9,7 @@ var floor: Floor
 var building: Building
 var item: Item
 var plant: Plant
+var zone: Zone
 
 func isNavigable():
 	if !building and !plant:
