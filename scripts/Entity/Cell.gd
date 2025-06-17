@@ -9,7 +9,13 @@ var floor: Floor
 var building: Building
 var item: Item
 var plant: Plant
-var zone: Zone
+var stockpile: Stockpile
+
+signal update(cell: Cell)
+
+func setStockpile(s: Stockpile):
+	stockpile = s
+	update.emit(self)
 
 func isNavigable():
 	if !building and !plant:

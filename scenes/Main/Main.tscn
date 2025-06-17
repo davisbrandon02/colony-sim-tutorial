@@ -166,13 +166,14 @@ script = ExtResource("4_a3nor")
 [node name="Camera" type="Camera2D" parent="Services"]
 script = ExtResource("3_5t4qm")
 
-[node name="Grid" type="Node2D" parent="." node_paths=PackedStringArray("pf", "floorLayer", "buildingLayer", "plantLayer", "itemLayer", "itemAmountLayer")]
+[node name="Grid" type="Node2D" parent="." node_paths=PackedStringArray("pf", "floorLayer", "buildingLayer", "plantLayer", "itemLayer", "blueprintLayer", "itemAmountLayer")]
 script = ExtResource("2_vomqs")
 pf = NodePath("../Services/Pathfinding")
 floorLayer = NodePath("FloorLayer")
 buildingLayer = NodePath("BuildingLayer")
 plantLayer = NodePath("PlantLayer")
 itemLayer = NodePath("ItemLayer")
+blueprintLayer = NodePath("BlueprintLayer")
 itemAmountLayer = NodePath("ItemAmountLayer")
 
 [node name="FloorLayer" type="TileMapLayer" parent="Grid"]

@@ -3,6 +3,7 @@ extends Resource
 
 @export var name: String
 @export var texture: Texture
+@export var growingTexture: Texture
 @export var sourceId: int
 @export var atlasCoords: Vector2 = Vector2(0,0)
 @export var navigableWhileGrowing: bool = true

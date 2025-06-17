@@ -2,7 +2,6 @@ class_name Zone
 extends Object
 
 var cells: Array[Cell]
-var placed: bool = false
 
 func setCells(_cells: Array[Cell]):
 	cells = _cells

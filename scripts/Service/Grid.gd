@@ -8,6 +8,7 @@ var grid: Dictionary = {}
 @export var buildingLayer: TileMapLayer
 @export var plantLayer: TileMapLayer
 @export var itemLayer: TileMapLayer
+@export var blueprintLayer: TileMapLayer
 @export var itemAmountLayer: Control
 
 signal tile_selected(pos: Vector2i)
@@ -18,6 +19,7 @@ func initializeGrid() -> void:
 	var usedCells = floorLayer.get_used_cells() + buildingLayer.get_used_cells() + itemLayer.get_used_cells()
 	for tile in usedCells:
 		var cell = Cell.new()
+		cell.update.connect(grid.updateCell)
 		grid[tile] = cell
 		cell.grid = self
 		
@@ -60,7 +62,10 @@ func updateCell(cell: Cell):
 	
 	# Set building
 	if cell.building != null:
-		buildingLayer.set_cell(cell.pos, cell.building.type.sourceId, cell.building.type.atlasCoords)
+		if cell.building.built == true:
+			buildingLayer.set_cell(cell.pos, cell.building.type.sourceId, cell.building.type.atlasCoords)
+		else:
+			blueprintLayer.set_cell(cell.pos, cell.building.type.sourceId, cell.building.type.atlasCoords)
 	else:
 		buildingLayer.set_cell(cell.pos)
 		
