@@ -166,13 +166,14 @@ script = ExtResource("4_a3nor")
 [node name="Camera" type="Camera2D" parent="Services"]
 script = ExtResource("3_5t4qm")
 
-[node name="Grid" type="Node2D" parent="." node_paths=PackedStringArray("pf", "floorLayer", "buildingLayer", "plantLayer", "itemLayer", "blueprintLayer", "itemAmountLayer")]
+[node name="Grid" type="Node2D" parent="." node_paths=PackedStringArray("pf", "floorLayer", "buildingLayer", "plantLayer", "itemLayer", "stockpileLayer", "blueprintLayer", "itemAmountLayer")]
 script = ExtResource("2_vomqs")
 pf = NodePath("../Services/Pathfinding")
 floorLayer = NodePath("FloorLayer")
 buildingLayer = NodePath("BuildingLayer")
 plantLayer = NodePath("PlantLayer")
 itemLayer = NodePath("ItemLayer")
+stockpileLayer = NodePath("StockpileLayer")
 blueprintLayer = NodePath("BlueprintLayer")
 itemAmountLayer = NodePath("ItemAmountLayer")
 
@@ -189,6 +190,7 @@ tile_map_data = PackedByteArray("AAAGAA0ABAAAAAAAAAAIAAgABAAAAAAAAAAHAAoABAAAAAA
 tile_set = SubResource("TileSet_iekte")
 
 [node name="StockpileLayer" type="TileMapLayer" parent="Grid"]
+modulate = Color(1, 0.564706, 1, 1)
 tile_set = SubResource("TileSet_72nt1")
 
 [node name="BlueprintLayer" type="TileMapLayer" parent="Grid"]

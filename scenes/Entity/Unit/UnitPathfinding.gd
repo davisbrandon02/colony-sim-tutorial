@@ -18,7 +18,6 @@ func _process(delta: float) -> void:
 		if unit.position.distance_to(Vector2(path[0])) < POSITION_TOLERANCE:
 			unit.position = path[0]
 			unit.pos = path[0] / TILE_SIZE
-			print("New pos: %s" % unit.pos)
 			path.remove_at(0)
 
 func getPathTo(_pos: Vector2i):

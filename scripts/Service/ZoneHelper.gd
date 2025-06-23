@@ -27,6 +27,7 @@ func startDrag(m: MODE, currentZone = null):
 	match m:
 		MODE.STOCKPILE:
 			var stockpile = Stockpile.new()
+			stockpile.placed = false
 			stockpile.zone = currentZone
 			parent = stockpile
 		MODE.GROW:
@@ -39,10 +40,13 @@ func _process(delta: float) -> void:
 	if isDragging:
 		var dragTo = grid.floorLayer.local_to_map(get_global_mouse_position())
 		
+		
+		# TODO figure this out
 		for x in dragTo.x - dragFrom.x:
 			for y in dragTo.y - dragFrom.y:
-				var cell: Cell = grid.grid[Vector2i(x, y)]
+				var cell: Cell = grid.grid[Vector2i(dragFrom.x + x, dragFrom.y + y)]
 				if cell not in cells:
+					print("Adding cell %s, %s to zone"  % [cell.pos.x, cell.pos.y])
 					cell.setStockpile(parent)
 					currentZone.addCells([cell])
 	# TODO Update cells during drag to show zone area blueprint
@@ -50,5 +54,6 @@ func _process(delta: float) -> void:
 
 func stopDrag():
 	set_process(false)
+	parent.placed = true
 	isDragging = false
 	dragCompleted.emit(cells)

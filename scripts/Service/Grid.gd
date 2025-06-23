@@ -8,6 +8,7 @@ var grid: Dictionary = {}
 @export var buildingLayer: TileMapLayer
 @export var plantLayer: TileMapLayer
 @export var itemLayer: TileMapLayer
+@export var stockpileLayer: TileMapLayer
 @export var blueprintLayer: TileMapLayer
 @export var itemAmountLayer: Control
 
@@ -19,7 +20,7 @@ func initializeGrid() -> void:
 	var usedCells = floorLayer.get_used_cells() + buildingLayer.get_used_cells() + itemLayer.get_used_cells()
 	for tile in usedCells:
 		var cell = Cell.new()
-		cell.update.connect(grid.updateCell)
+		cell.update.connect(updateCell)
 		grid[tile] = cell
 		cell.grid = self
 		
@@ -80,6 +81,15 @@ func updateCell(cell: Cell):
 		itemLayer.set_cell(cell.pos, cell.item.type.sourceId, cell.item.type.atlasCoords)
 	else:
 		itemLayer.set_cell(cell.pos)
+		
+	# Set stockpile
+	if cell.stockpile != null:
+		if cell.stockpile.placed:
+			stockpileLayer.set_cell(cell.pos, 7, Vector2.ZERO)
+		else:
+			blueprintLayer.set_cell(cell.pos, 7, Vector2.ZERO)
+	else:
+		stockpileLayer.set_cell(cell.pos)
 
 func getNearestUnoccupiedCell(_pos: Vector2i, radius: int):
 	if grid[_pos].isOccupied == false: return grid[_pos]

@@ -49,16 +49,19 @@ func _input(event):
 		elif state == STATE.placing:
 			state = STATE.select
 	elif event.is_action("left_click") and event.is_pressed():
-		if state == STATE.zoning and zoneHelper.isDragging == false:
-			zoneHelper.startDrag()
+		if state == STATE.zoning_stockpile and zoneHelper.isDragging == false:
+			zoneHelper.startDrag(ZoneHelper.MODE.STOCKPILE)
+		elif state == STATE.zoning_grow and zoneHelper.isDragging == false:
+			zoneHelper.startDrag(ZoneHelper.MODE.GROW)
 	elif event.is_action("left_click") and event.is_released():
-		if state == STATE.zoning and zoneHelper.isDragging == true:
+		if state in [STATE.zoning_stockpile, STATE.zoning_grow] and zoneHelper.isDragging == true:
 			zoneHelper.stopDrag()
 
 enum STATE {
 	select,
 	placing,
-	zoning,
+	zoning_stockpile,
+	zoning_grow,
 }
 var state = STATE.select
 func setState(_state: STATE):
@@ -73,7 +76,7 @@ func setPlacing(_data):
 
 # Zoning
 func setStockpileZone():
-	state = STATE.zoning
+	state = STATE.zoning_stockpile
 
 # Cancel action
 func cancelAction():
