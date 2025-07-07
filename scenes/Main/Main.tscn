@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://cmaf04babq2mk"]
+[gd_scene load_steps=43 format=4 uid="uid://cmaf04babq2mk"]
 
 [ext_resource type="Script" uid="uid://fmomcflk2sg" path="res://scenes/Main/Main.gd" id="1_3jwfp"]
 [ext_resource type="Script" uid="uid://cl4683jg1jpr7" path="res://scripts/Service/Grid.gd" id="2_vomqs"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dlfjky3nwxy2o" path="res://asset/stoneitem.png" id="11_gr1ae"]
 [ext_resource type="Script" uid="uid://nnmysov71l0a" path="res://scenes/Main/info_panel.gd" id="11_vcv2t"]
 [ext_resource type="Texture2D" uid="uid://dbvnkpfx4jt2j" path="res://asset/stockpile.png" id="14_p7wog"]
+[ext_resource type="Texture2D" uid="uid://cibrrhtqvebrb" path="res://asset/grow.png" id="14_plsdc"]
 [ext_resource type="Script" uid="uid://dpwrsj3uh5kfl" path="res://ui/GUIButtons.gd" id="15_0cfwy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_paylg"]
@@ -57,14 +58,20 @@ texture_region_size = Vector2i(128, 128)
 tile_size = Vector2i(128, 128)
 sources/4 = SubResource("TileSetAtlasSource_plsdc")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0cfwy"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iekte"]
 texture = ExtResource("14_p7wog")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rc1wb"]
+texture = ExtResource("14_plsdc")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_72nt1"]
 tile_size = Vector2i(128, 128)
-sources/7 = SubResource("TileSetAtlasSource_0cfwy")
+sources/7 = SubResource("TileSetAtlasSource_iekte")
+sources/8 = SubResource("TileSetAtlasSource_rc1wb")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wtvqr"]
 texture = ExtResource("4_s0xv0")
@@ -106,6 +113,11 @@ texture = ExtResource("14_p7wog")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kc5qw"]
+texture = ExtResource("14_plsdc")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_0cfwy"]
 tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_wtvqr")
@@ -116,6 +128,7 @@ sources/4 = SubResource("TileSetAtlasSource_lt2ss")
 sources/5 = SubResource("TileSetAtlasSource_pt35p")
 sources/7 = SubResource("TileSetAtlasSource_72nt1")
 sources/6 = SubResource("TileSetAtlasSource_6kvkm")
+sources/8 = SubResource("TileSetAtlasSource_kc5qw")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_70b41"]
 texture = ExtResource("11_8mxgy")
@@ -157,6 +170,7 @@ zoneHelper = NodePath("ZoneHelper")
 units = NodePath("../../Units")
 
 [node name="ZoneHelper" type="Node2D" parent="Services/Controller" node_paths=PackedStringArray("grid")]
+process_mode = 1
 script = ExtResource("6_72nt1")
 grid = NodePath("../../../Grid")
 
@@ -166,14 +180,13 @@ script = ExtResource("4_a3nor")
 [node name="Camera" type="Camera2D" parent="Services"]
 script = ExtResource("3_5t4qm")
 
-[node name="Grid" type="Node2D" parent="." node_paths=PackedStringArray("pf", "floorLayer", "buildingLayer", "plantLayer", "itemLayer", "stockpileLayer", "blueprintLayer", "itemAmountLayer")]
+[node name="Grid" type="Node2D" parent="." node_paths=PackedStringArray("pf", "floorLayer", "buildingLayer", "plantLayer", "itemLayer", "blueprintLayer", "itemAmountLayer")]
 script = ExtResource("2_vomqs")
 pf = NodePath("../Services/Pathfinding")
 floorLayer = NodePath("FloorLayer")
 buildingLayer = NodePath("BuildingLayer")
 plantLayer = NodePath("PlantLayer")
 itemLayer = NodePath("ItemLayer")
-stockpileLayer = NodePath("StockpileLayer")
 blueprintLayer = NodePath("BlueprintLayer")
 itemAmountLayer = NodePath("ItemAmountLayer")
 
@@ -189,8 +202,7 @@ tile_set = SubResource("TileSet_qna7e")
 tile_map_data = PackedByteArray("AAAGAA0ABAAAAAAAAAAIAAgABAAAAAAAAAAHAAoABAAAAAAAAAAFAAoABAAAAAAAAAAIAAwABAAAAAAAAAAKAAoABAAAAAAAAAALAAwABAAAAAAAAAAJAA4ABAAAAAAAAAAUAAoABAAAAAAAAAASAAkABAAAAAAAAAARAAsABAAAAAAAAAAVAAkABAAAAAAAAAAQAAgABAAAAAAAAAAOAAEABAAAAAAAAAANAAIABAAAAAAAAAAPAAMABAAAAAAAAAALAAEABAAAAAAAAAAJABcABAAAAAAAAAAGABQABAAAAAAAAAAQABIABAAAAAAAAAARABcABAAAAAAAAAAMABYABAAAAAAAAAAcABsABAAAAAAAAAAZABcABAAAAAAAAAAJAB8ABAAAAAAAAAAEABwABAAAAAAAAAATAB8ABAAAAAAAAAAhACEABAAAAAAAAAAvABsABAAAAAAAAAAoABsABAAAAAAAAAAkAB4ABAAAAAAAAAAjABUABAAAAAAAAAAtAAkABAAAAAAAAAAjAAoABAAAAAAAAAAmAA0ABAAAAAAAAAA1AA8ABAAAAAAAAAA2ABMABAAAAAAAAAA8ABIABAAAAAAAAAA7ABgABAAAAAAAAAAmAAIABAAAAAAAAAAfAAUABAAAAAAAAAA=")
 tile_set = SubResource("TileSet_iekte")
 
-[node name="StockpileLayer" type="TileMapLayer" parent="Grid"]
-modulate = Color(1, 0.564706, 1, 1)
+[node name="ZoneLayer" type="TileMapLayer" parent="Grid"]
 tile_set = SubResource("TileSet_72nt1")
 
 [node name="BlueprintLayer" type="TileMapLayer" parent="Grid"]

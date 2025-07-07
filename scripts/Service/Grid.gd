@@ -8,7 +8,7 @@ var grid: Dictionary = {}
 @export var buildingLayer: TileMapLayer
 @export var plantLayer: TileMapLayer
 @export var itemLayer: TileMapLayer
-@export var stockpileLayer: TileMapLayer
+@export var zoneLayer: TileMapLayer
 @export var blueprintLayer: TileMapLayer
 @export var itemAmountLayer: Control
 
@@ -85,11 +85,12 @@ func updateCell(cell: Cell):
 	# Set stockpile
 	if cell.stockpile != null:
 		if cell.stockpile.placed:
-			stockpileLayer.set_cell(cell.pos, 7, Vector2.ZERO)
+			zoneLayer.set_cell(cell.pos, 7, Vector2.ZERO)
 		else:
 			blueprintLayer.set_cell(cell.pos, 7, Vector2.ZERO)
 	else:
-		stockpileLayer.set_cell(cell.pos)
+		# TODO add logic for grow zones
+		zoneLayer.set_cell(cell.pos)
 
 func getNearestUnoccupiedCell(_pos: Vector2i, radius: int):
 	if grid[_pos].isOccupied == false: return grid[_pos]
